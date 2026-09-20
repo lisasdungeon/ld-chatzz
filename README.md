@@ -14,22 +14,31 @@ Next-generation encrypted communications module for Foundry VTT. Features privat
 - **Image Sharing** - Send images directly in conversations
 - **GM Stealth Monitor** - Live, filterable view of all communications for GMs
 - **GM Moderation Tools** - Clear or delete conversations, per-type or in bulk
-- **Custom Backgrounds** - Personal, per-user, and per-chat background images
+- **Custom Backgrounds** - Set a personal background image from the hub Settings tab or the settings window, with instant live preview on every open window
 - **Sound Effects** - Configurable notification and UI sounds, with a GM-wide override option
-- **Cyberpunk Theme** - A distinctive neon visual style
+- **Selectable Themes** - Crimson, Void, and Neon palettes, swappable at runtime from the hub Settings tab or the settings window and persisted per client
 
 ## Installation
 
-**Manifest URL**:
+Install v1.5.0 by pasting its manifest URL into Foundry VTT:
+
+**Manifest URL (v1.5.0)**:
+```
+https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/module.json
+```
+
+For automatic updates, use the always-latest manifest instead:
 ```
 https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json
 ```
+
+Direct download: [ld-chatzz-v1.5.0.zip](https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip) - full notes in the [v1.5.0 release](https://github.com/lisasdungeon/ld-chatzz/releases/tag/v1.5.0).
 
 ### How to Install
 1. Open Foundry VTT
 2. Go to **Add-on Modules**
 3. Click **Install Module**
-4. Paste the manifest URL above
+4. Paste one of the manifest URLs above (the pinned URL installs exactly v1.5.0; the latest URL tracks new releases)
 5. Click **Install**
 
 ## Usage

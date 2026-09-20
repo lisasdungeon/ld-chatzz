@@ -2,8 +2,10 @@
 #
 # On every version tag (v1.2.3 style) this workflow runs the validation script
 # and the full test suite, builds the release zip with the project's own
-# packager, then attaches it to the GitHub release. The asset name and tag are
-# verified against module.json so the manifest's download URL always resolves.
+# packager, then attaches the zip and module.json to the GitHub release. The
+# asset name and tag are verified against module.json so the manifest's
+# download URL always resolves, and the manifest asset is what the README's
+# releases/latest/download/module.json install URL serves.
 #
 # Only first-party actions (actions/checkout, actions/setup-node) and the
 # bundled gh CLI are used; no third-party release tooling.
@@ -68,11 +70,13 @@ jobs:
           console.log(fs.readFileSync("release-notes.md", "utf8"));
           EOF
 
-      - name: Attach the zip to the GitHub release
+      - name: Attach the release assets to the GitHub release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$GITHUB_REF_NAME" "dist/ld-chatzz-v$VERSION.zip" \
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/ld-chatzz-v$VERSION.zip" \
+            "module.json" \
             --title "LD Chatzz $GITHUB_REF_NAME" \
             --notes-file release-notes.md \
             --verify-tag

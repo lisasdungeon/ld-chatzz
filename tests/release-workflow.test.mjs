@@ -28,14 +28,14 @@ test("workflow runs validation and the full test suite before packaging", () => 
     assert.ok(validateStep < packageStep && testStep < packageStep, "packaging must come after validation and tests");
 });
 
-test("workflow attaches the manifest-matching zip to the GitHub release", () => {
+test("workflow attaches the manifest-matching zip and module.json to the GitHub release", () => {
     const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "module.json"), "utf8"));
     assert.match(
         workflow,
         new RegExp(`dist/${manifest.id}-v\\$VERSION\\.zip`),
         "the attached asset must use the manifest id and version"
     );
-    assert.match(workflow, /gh release create/, "expected the bundled gh CLI to create the release");
+    assert.match(workflow, /gh release create[\s\S]*?"module\.json"/, "module.json must be a release asset so the README install URL resolves");
     assert.match(workflow, /--verify-tag/, "expected the release to attach to the pushed tag");
     assert.match(workflow, /--notes-file release-notes\.md/, "expected changelog-derived release notes");
 });
