@@ -18,6 +18,6 @@ Everything since v1.4.3, including the previously unreleased v1.4.4 mobile layou
 
 ## Install
 
-- Manifest URL: `https://github.com/RNK-Enterprise/ld-chatzz/releases/latest/download/module.json`
+- Manifest URL: `https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json`
 - Download: `ld-chatzz-v1.5.0.zip` (attached to this release)
 - Compatible with Foundry VTT v11–v13 (verified on v13)
