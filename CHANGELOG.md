@@ -9,6 +9,7 @@
 - Startup asset check: warns in the console, grouped by icons/sounds, when any asset referenced by the module is missing from disk, instead of failing silently as dead buttons or silent audio.
 - The close-window sound, previously registered but never wired, now plays when chat windows close.
 - Notification sound is now selectable from a dropdown of the four built-in sounds, persisted as a client setting, with a working Preview button.
+- Release pipeline: on every version tag, GitHub Actions runs manifest validation and the full test suite, builds the release zip with the project packager, verifies the tag matches module.json, and attaches the zip to the GitHub release with notes extracted from the changelog.
 
 ### Changed
 

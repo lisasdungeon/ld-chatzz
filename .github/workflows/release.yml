@@ -1,0 +1,78 @@
+# LD Chatzz release pipeline.
+#
+# On every version tag (v1.2.3 style) this workflow runs the validation script
+# and the full test suite, builds the release zip with the project's own
+# packager, then attaches it to the GitHub release. The asset name and tag are
+# verified against module.json so the manifest's download URL always resolves.
+#
+# Only first-party actions (actions/checkout, actions/setup-node) and the
+# bundled gh CLI are used; no third-party release tooling.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Test, package and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the tagged commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify the tag matches module.json
+        run: |
+          VERSION=$(node -p "JSON.parse(require('node:fs').readFileSync('module.json','utf8')).version")
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match module.json version v$VERSION" >&2
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate manifest and versions
+        run: node scripts/validate.mjs
+
+      - name: Run the test suite
+        run: npm test
+
+      - name: Build and verify the release zip
+        run: node scripts/package-release.mjs
+
+      - name: Extract release notes from the changelog
+        run: |
+          node - <<'EOF'
+          const fs = require("node:fs");
+          const version = process.env.VERSION;
+          const lines = fs.readFileSync("CHANGELOG.md", "utf8").split("\n");
+          const start = lines.findIndex((line) => line.trim() === `## ${version}`);
+          const body = start === -1 ? [] : lines.slice(start + 1);
+          const end = body.findIndex((line) => line.startsWith("## "));
+          const notes = (end === -1 ? body : body.slice(0, end)).join("\n").trim();
+          fs.writeFileSync("release-notes.md", (notes || `LD Chatzz ${version}`) + "\n");
+          console.log(fs.readFileSync("release-notes.md", "utf8"));
+          EOF
+
+      - name: Attach the zip to the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "dist/ld-chatzz-v$VERSION.zip" \
+            --title "LD Chatzz $GITHUB_REF_NAME" \
+            --notes-file release-notes.md \
+            --verify-tag
