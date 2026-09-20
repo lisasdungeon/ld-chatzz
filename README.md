@@ -24,15 +24,15 @@ Install v1.5.0 by pasting its manifest URL into Foundry VTT:
 
 **Manifest URL (v1.5.0)**:
 ```
-https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/module.json
+https://github.com/RNK-Enterprise/ld-chatzz/releases/download/v1.5.0/module.json
 ```
 
 For automatic updates, use the always-latest manifest instead:
 ```
-https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json
+https://github.com/RNK-Enterprise/ld-chatzz/releases/latest/download/module.json
 ```
 
-Direct download: [ld-chatzz-v1.5.0.zip](https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip) - full notes in the [v1.5.0 release](https://github.com/lisasdungeon/ld-chatzz/releases/tag/v1.5.0).
+Direct download: [ld-chatzz-v1.5.0.zip](https://github.com/RNK-Enterprise/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip) - full notes in the [v1.5.0 release](https://github.com/RNK-Enterprise/ld-chatzz/releases/tag/v1.5.0).
 
 ### How to Install
 1. Open Foundry VTT
@@ -66,7 +66,7 @@ Proprietary - see [LICENSE](LICENSE)
 
 ## Support
 
-- Issues: https://github.com/lisasdungeon/ld-chatzz/issues
+- Issues: https://github.com/RNK-Enterprise/ld-chatzz/issues
 - Patreon: https://patreon.com/LisasDungeon
 - Discord: MystryssLysa
 - Email: Lisasdungeon@gmail.com

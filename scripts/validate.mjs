@@ -49,7 +49,7 @@ try {
 
     const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
     assert(
-        readme.includes('https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json'),
+        readme.includes('https://github.com/RNK-Enterprise/ld-chatzz/releases/latest/download/module.json'),
         'README.md must reference the latest release manifest URL.'
     );
     assert(readme.includes(moduleJson.version), 'README.md must mention the current version.');

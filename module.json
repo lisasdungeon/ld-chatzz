@@ -6,7 +6,7 @@
   "authors": [
     {
       "name": "Lisa's Dungeon",
-      "url": "https://github.com/lisasdungeon",
+      "url": "https://github.com/RNK-Enterprise",
       "discord": "MystryssLysa",
       "email": "Lisasdungeon@gmail.com",
       "patreon": "https://patreon.com/LisasDungeon"
@@ -16,13 +16,13 @@
     "minimum": 11,
     "verified": 13
   },
-  "url": "https://github.com/lisasdungeon/ld-chatzz",
-  "manifest": "https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json",
-  "download": "https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip",
-  "readme": "https://github.com/lisasdungeon/ld-chatzz/blob/main/README.md",
-  "license": "https://github.com/lisasdungeon/ld-chatzz/blob/main/LICENSE",
-  "changelog": "https://github.com/lisasdungeon/ld-chatzz/blob/main/CHANGELOG.md",
-  "bugs": "https://github.com/lisasdungeon/ld-chatzz/issues",
+  "url": "https://github.com/RNK-Enterprise/ld-chatzz",
+  "manifest": "https://github.com/RNK-Enterprise/ld-chatzz/releases/latest/download/module.json",
+  "download": "https://github.com/RNK-Enterprise/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip",
+  "readme": "https://github.com/RNK-Enterprise/ld-chatzz/blob/main/README.md",
+  "license": "https://github.com/RNK-Enterprise/ld-chatzz/blob/main/LICENSE",
+  "changelog": "https://github.com/RNK-Enterprise/ld-chatzz/blob/main/CHANGELOG.md",
+  "bugs": "https://github.com/RNK-Enterprise/ld-chatzz/issues",
   "esmodules": [
     "main.js"
   ],

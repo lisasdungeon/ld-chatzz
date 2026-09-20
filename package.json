@@ -21,18 +21,18 @@
   "contributors": [
     {
       "name": "Lisa's Dungeon",
-      "url": "https://github.com/lisasdungeon"
+      "url": "https://github.com/RNK-Enterprise"
     }
   ],
   "license": "Proprietary",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lisasdungeon/ld-chatzz.git"
+    "url": "https://github.com/RNK-Enterprise/ld-chatzz.git"
   },
   "bugs": {
-    "url": "https://github.com/lisasdungeon/ld-chatzz/issues"
+    "url": "https://github.com/RNK-Enterprise/ld-chatzz/issues"
   },
-  "homepage": "https://github.com/lisasdungeon/ld-chatzz#readme",
+  "homepage": "https://github.com/RNK-Enterprise/ld-chatzz#readme",
   "devDependencies": {
     "jsdom": "^30.0.1"
   }
