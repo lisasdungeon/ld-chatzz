@@ -1,0 +1,396 @@
+/* ============================================
+   FOUNDRY VTT OVERRIDES
+   ============================================ */
+.chatzz-window.app,
+.ld-chatzz.app,
+.ld-chatzz.application,
+.chatzz-window.application {
+    background: var(--chatzz-bg-panel);
+    border: 2px solid var(--chatzz-border) !important;
+    outline: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+.chatzz-window.app.window-app,
+.ld-chatzz.app.window-app,
+.ld-chatzz.window-app,
+.chatzz-window.window-app {
+    border: 2px solid var(--chatzz-border) !important;
+    outline: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+.chatzz-window .window-content {
+    background: transparent;
+    padding: 0;
+}
+
+/* Override Foundry's default form styles inside Chatzz */
+.chatzz-window input[type="text"],
+.chatzz-window input[type="search"],
+.chatzz-window input[type="number"],
+.chatzz-window textarea,
+.chatzz-window select {
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-primary);
+    border-radius: var(--chatzz-radius-sm);
+}
+
+.chatzz-window input:focus,
+.chatzz-window textarea:focus,
+.chatzz-window select:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+/* ============================================
+   IMAGE SHARING STYLES
+   ============================================ */
+.chatzz-msg-image {
+    margin-top: var(--chatzz-spacing-sm);
+    max-width: 100%;
+}
+
+.chatzz-shared-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: var(--chatzz-radius-md);
+    border: 1px solid var(--chatzz-border);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-shared-image:hover {
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-image-preview {
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border-top: 1px solid var(--chatzz-border);
+}
+
+.chatzz-pending-image {
+    position: relative;
+    display: inline-block;
+}
+
+.chatzz-pending-image img {
+    max-width: 150px;
+    max-height: 100px;
+    border-radius: var(--chatzz-radius-sm);
+    border: 1px solid var(--chatzz-neon-cyan);
+}
+
+.chatzz-cancel-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--chatzz-neon-red);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.chatzz-attach-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-primary);
+    padding: var(--chatzz-spacing-sm);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-attach-btn:hover {
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+/* ============================================
+   BACKGROUND IMAGE STYLES
+   ============================================ */
+.chatzz-chat-container.has-background {
+    position: relative;
+}
+
+.chatzz-chat-container.has-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--chat-background);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.chatzz-chat-container.has-background > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   STEALTH MONITOR STYLES
+   ============================================ */
+.chatzz-gm-monitor.stealth-monitor {
+    border-color: var(--chatzz-neon-purple);
+}
+
+.chatzz-stealth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--chatzz-neon-purple);
+    color: white;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: pulse-stealth 2s infinite;
+}
+
+@keyframes pulse-stealth {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.chatzz-monitor-stats {
+    display: flex;
+    gap: var(--chatzz-spacing-md);
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border-radius: var(--chatzz-radius-sm);
+    flex-wrap: wrap;
+}
+
+.chatzz-stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-stat i {
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-stat.highlight i {
+    color: var(--chatzz-neon-green);
+}
+
+.chatzz-stat.flagged i {
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-monitor-body {
+    display: flex;
+    gap: var(--chatzz-spacing-md);
+    flex: 1;
+    min-height: 0;
+}
+
+.chatzz-user-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    background: var(--chatzz-bg-input);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+    overflow-y: auto;
+}
+
+.chatzz-user-sidebar h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--chatzz-text-secondary);
+    margin-bottom: var(--chatzz-spacing-sm);
+}
+
+.chatzz-user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.chatzz-user-filter-item {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-xs);
+    padding: 4px;
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-user-filter-item:hover {
+    background: var(--chatzz-bg-hover);
+}
+
+.chatzz-user-filter-item input[type="checkbox"] {
+    accent-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-user-avatar-small {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatzz-view-history {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-secondary);
+    cursor: pointer;
+    padding: 2px;
+    opacity: 0;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-user-filter-item:hover .chatzz-view-history {
+    opacity: 1;
+}
+
+.chatzz-view-history:hover {
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-monitor-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-monitor-message {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-monitor-message:hover {
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-monitor-message.new {
+    border-left: 3px solid var(--chatzz-neon-green);
+}
+
+.chatzz-monitor-message.flagged {
+    border-left: 3px solid var(--chatzz-neon-red);
+}
+
+.chatzz-monitor-message.private .chatzz-monitor-channel {
+    color: var(--chatzz-neon-magenta);
+}
+
+.chatzz-monitor-message.group .chatzz-monitor-channel {
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-flag-message {
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-flag-message:hover,
+.chatzz-flag-message.flagged {
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-new-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--chatzz-neon-green);
+    color: var(--chatzz-bg-dark);
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.chatzz-monitor-image img {
+    max-width: 150px;
+    max-height: 100px;
+    border-radius: var(--chatzz-radius-sm);
+    margin-top: var(--chatzz-spacing-xs);
+}
+
+.chatzz-monitor-msg-actions {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-toggle-options {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-secondary);
+    padding: var(--chatzz-spacing-xs);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-toggle-btn.active {
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-sort-select {
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-primary);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    border-radius: var(--chatzz-radius-sm);
+    font-size: 12px;
+}
+
+.chatzz-control-row {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    align-items: center;
+}
+
+.chatzz-footer-left,
+.chatzz-footer-right {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-monitor-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--chatzz-spacing-sm);
+    border-top: 1px solid var(--chatzz-border);
+}
+

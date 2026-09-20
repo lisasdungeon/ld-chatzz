@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Release packaging output
+dist/
+
+# Local tooling state
+.freebuff/
+
+# Personal dev workspace (notes + Python venv, ~300MB — never versioned)
+RNK DEV BIBLE/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+*.log

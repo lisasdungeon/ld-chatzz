@@ -1,0 +1,215 @@
+/* ============================================
+   LD CHATZZ - MOBILE / TOUCH LAYOUT
+   Full-screen, thumb-friendly layout for phones.
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    /* Full-screen module windows override Foundry's inline size/position */
+    .ld-chatzz {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        z-index: 300 !important;
+    }
+
+    .ld-chatzz .window-header {
+        min-height: 52px;
+    }
+
+    .ld-chatzz .window-content {
+        height: calc(100% - 52px) !important;
+        padding: 0;
+    }
+
+    /* Universal box-sizing so padding never widens inputs past the viewport */
+    .ld-chatzz,
+    .ld-chatzz *,
+    .ld-chatzz *::before,
+    .ld-chatzz *::after {
+        box-sizing: border-box;
+    }
+
+    /* 16px fields stop iOS Safari auto-zooming on focus */
+    .ld-chatzz textarea,
+    .ld-chatzz input[type="text"],
+    .ld-chatzz input[type="search"],
+    .ld-chatzz select {
+        font-size: 16px !important;
+    }
+
+    /* Larger, thumb-friendly touch targets */
+    .chatzz-tab {
+        width: 56px;
+        height: 56px;
+    }
+
+    .chatzz-tab img.sao-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .chatzz-toolbar-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chatzz-toolbar-btn .btn-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chatzz-send-btn {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        max-width: 48px !important;
+    }
+
+    .chatzz-send-btn .sao-send-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .ld-chatzz .window-header .header-control,
+    .ld-chatzz .window-header .header-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chatzz-input-row textarea {
+        min-height: 44px;
+    }
+
+    /* Notched phones: keep bottom controls above the home indicator */
+    .chatzz-tabs,
+    .chatzz-input-area {
+        padding-bottom: calc(var(--chatzz-spacing-sm) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .chatzz-hub-container,
+    .chatzz-chat-container {
+        padding-left: env(safe-area-inset-left, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+    }
+
+    /* Stack the New Chat columns into a single scrollable column */
+    .chatzz-two-column {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+        gap: var(--chatzz-spacing-md);
+    }
+
+    .chatzz-column .chatzz-user-list {
+        max-height: none;
+    }
+
+    /* Shared images never exceed the viewport */
+    .chatzz-msg-image {
+        max-width: 100%;
+    }
+
+    /* Comfortable tap height on conversation rows */
+    .chatzz-conv-item {
+        padding: 12px var(--chatzz-spacing-sm);
+    }
+
+    /* Chat toolbar: let the search group shrink so buttons stay on-screen */
+    .chatzz-toolbar-left {
+        min-width: 0;
+    }
+
+    .chatzz-search-input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .chatzz-toolbar-right {
+        flex-shrink: 0;
+    }
+
+    /* Long words and URLs wrap instead of widening the bubble */
+    .chatzz-msg-content,
+    .chatzz-msg-content a,
+    .chatzz-monitor-msg-content {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    /* Status bar names truncate instead of overflowing */
+    .chatzz-status-text {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Reply preview truncates long quoted text */
+    .chatzz-replying-content {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* GM monitor: stack the user filter above the message log */
+    .chatzz-monitor-body {
+        flex-direction: column;
+    }
+
+    .chatzz-user-sidebar {
+        width: auto;
+        flex-shrink: 1;
+        max-height: 40%;
+    }
+
+    .chatzz-monitor-search {
+        max-width: none;
+        width: 100%;
+    }
+
+    /* Moderation rows: long names truncate instead of pushing buttons off */
+    .chatzz-mod-item-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* App mode: hide Foundry chrome while a chatzz window is open */
+    body.chatzz-app-mode #controls,
+    body.chatzz-app-mode #hotbar,
+    body.chatzz-app-mode #navigation,
+    body.chatzz-app-mode #sidebar {
+        display: none !important;
+    }
+}
+
+/* Coarse-pointer devices regardless of width */
+@media (pointer: coarse) {
+    .chatzz-tab,
+    .chatzz-toolbar-btn,
+    .chatzz-send-btn,
+    .chatzz-conv-item,
+    .chatzz-user-card {
+        cursor: default;
+    }
+
+    .chatzz-tab,
+    .chatzz-toolbar-btn,
+    .chatzz-send-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}

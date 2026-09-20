@@ -1,0 +1,117 @@
+<div class="chatzz-settings-container">
+    <div class="chatzz-settings-content">
+        <!-- Sound Settings -->
+        <div class="chatzz-settings-section">
+            <h4><i class="fas fa-volume-up"></i> {{localize 'CHATZZ.SoundSettings'}}</h4>
+            
+            <div class="chatzz-form-group">
+                <label class="chatzz-checkbox-label">
+                    <input type="checkbox" name="enableSounds" {{#if enableSounds}}checked{{/if}}>
+                    <span>{{localize 'CHATZZ.EnableSound'}}</span>
+                </label>
+            </div>
+
+            <div class="chatzz-form-group">
+                <label>{{localize 'CHATZZ.NotificationSound'}}</label>
+                <div class="chatzz-input-row">
+                    <select name="notificationSound">
+                        {{#each sounds}}
+                        <option value="{{this.file}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    <button type="button" class="chatzz-btn-icon" data-action="previewSound" title="{{localize 'CHATZZ.PreviewSound'}}">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chatzz-form-group">
+                <label>{{localize 'CHATZZ.NotificationVolume'}}: {{notificationVolume}}</label>
+                <input type="range" name="notificationVolume" min="0" max="1" step="0.1" value="{{notificationVolume}}">
+            </div>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="chatzz-settings-section">
+            <h4><i class="fas fa-bell"></i> {{localize 'CHATZZ.NotificationSettings'}}</h4>
+            
+            <div class="chatzz-form-group">
+                <label class="chatzz-checkbox-label">
+                    <input type="checkbox" name="enableDesktopNotifications" {{#if enableDesktopNotifications}}checked{{/if}}>
+                    <span>{{localize 'CHATZZ.EnableDesktopNotifications'}}</span>
+                </label>
+                <button type="button" class="chatzz-btn-small" data-action="requestNotifications">
+                    {{localize 'CHATZZ.RequestPermission'}}
+                </button>
+            </div>
+        </div>
+
+        <!-- Appearance Settings -->
+        <div class="chatzz-settings-section">
+            <h4><i class="fas fa-palette"></i> {{localize 'CHATZZ.AppearanceSettings'}}</h4>
+
+            <div class="chatzz-form-group">
+                <label>{{localize 'CHATZZ.Theme'}}</label>
+                <div class="chatzz-input-row">
+                    <select name="theme">
+                        {{#each themes}}
+                        <option value="{{id}}" {{#if this.selected}}selected{{/if}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="chatzz-form-group">
+                <label>{{localize 'CHATZZ.PersonalBackground'}}</label>
+                <div class="chatzz-input-row">
+                    <input type="text" name="personalBackground" value="{{personalBackground}}" readonly>
+                    <button type="button" class="chatzz-btn-icon" data-action="pickBackground" title="{{localize 'CHATZZ.SetBackground'}}">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button type="button" class="chatzz-btn-icon chatzz-btn-danger" data-action="clearBackground" title="{{localize 'CHATZZ.ClearBackground'}}">
+                        <i class="fas fa-eraser"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chatzz-form-group">
+                <label class="chatzz-checkbox-label">
+                    <input type="checkbox" name="shareBackground" {{#if shareBackground}}checked{{/if}}>
+                    <span>{{localize 'CHATZZ.ShareBackground'}}</span>
+                </label>
+            </div>
+        </div>
+
+        {{#if isGM}}
+        <!-- GM Override Settings -->
+        <div class="chatzz-settings-section chatzz-gm-section">
+            <h4><i class="fas fa-shield-alt"></i> {{localize 'CHATZZ.GMOverrideSettings'}}</h4>
+            
+            <div class="chatzz-form-group">
+                <label class="chatzz-checkbox-label">
+                    <input type="checkbox" name="gmOverrideEnabled" {{#if gmOverrideEnabled}}checked{{/if}}>
+                    <span>{{localize 'CHATZZ.EnableGMOverride'}}</span>
+                </label>
+                <p class="chatzz-hint">{{localize 'CHATZZ.GMOverrideHint'}}</p>
+            </div>
+
+            <div class="chatzz-form-group">
+                <label>{{localize 'CHATZZ.GMOverrideSound'}}</label>
+                <div class="chatzz-input-row">
+                    <input type="text" name="gmOverrideSoundPath" value="{{gmOverrideSoundPath}}" readonly>
+                    <button type="button" class="chatzz-btn-icon" data-action="pickGMSound">
+                        <i class="fas fa-folder-open"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+
+    <!-- Footer -->
+    <div class="chatzz-settings-footer">
+        <button type="button" class="chatzz-btn chatzz-btn-primary" data-action="saveSettings">
+            <i class="fas fa-save"></i> {{localize 'CHATZZ.SaveSettings'}}
+        </button>
+    </div>
+</div>

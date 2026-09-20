@@ -1,0 +1,39 @@
+{
+  "name": "ld-chatzz",
+  "version": "1.5.0",
+  "description": "Next-generation encrypted communications module for Foundry VTT",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-concurrency=1 'tests/**/*.test.mjs'",
+    "test:coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=main.js --test-coverage-include=src/**/*.js --test-coverage-exclude=tests/** --test-coverage-lines=100 'tests/**/*.test.mjs'",
+    "package:release": "node scripts/package-release.mjs",
+    "audit:mobile": "node scripts/audit-mobile.mjs"
+  },
+  "keywords": [
+    "foundry-vtt",
+    "chat",
+    "messaging",
+    "module",
+    "cyberpunk"
+  ],
+  "author": "Lisa's Dungeon",
+  "contributors": [
+    {
+      "name": "Lisa's Dungeon",
+      "url": "https://github.com/lisasdungeon"
+    }
+  ],
+  "license": "Proprietary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisasdungeon/ld-chatzz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lisasdungeon/ld-chatzz/issues"
+  },
+  "homepage": "https://github.com/lisasdungeon/ld-chatzz#readme",
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}

@@ -1,0 +1,113 @@
+/* ============================================
+   LD CHATZZ - RUNTIME THEMES
+   Palettes swap every --chatzz-* variable under
+   [data-chatzz-theme] (set on documentElement).
+   'crimson' is the default :root palette in
+   chatzz-base.css and needs no overrides.
+   ============================================ */
+
+/* ============================================
+   VOID - cold steel on near-black slate
+   ============================================ */
+:root[data-chatzz-theme='void'] {
+    --chatzz-neon-cyan: #8fa3b8;
+    --chatzz-neon-magenta: #a8b4c4;
+    --chatzz-neon-purple: #4c5a6e;
+    --chatzz-neon-blue: #6e7f94;
+    --chatzz-neon-green: #8fa3b8;
+    --chatzz-neon-yellow: #c9d3de;
+    --chatzz-neon-orange: #9fb0c4;
+    --chatzz-neon-red: #c25b5b;
+
+    --chatzz-bg-dark: #0b0d10;
+    --chatzz-bg-darker: #060708;
+    --chatzz-bg-panel: #101418;
+    --chatzz-bg-input: #161b21;
+    --chatzz-bg-hover: rgba(143, 163, 184, 0.12);
+    --chatzz-bg-active: rgba(143, 163, 184, 0.22);
+
+    --chatzz-btn-dark: #1a2027;
+    --chatzz-btn-close: #1a2027;
+    --chatzz-btn-send: #1a2027;
+
+    --chatzz-border: #2a333d;
+    --chatzz-border-hover: #46545f;
+    --chatzz-border-focus: #8fa3b8;
+
+    --chatzz-text-primary: #e4e9ee;
+    --chatzz-text-secondary: #a6b2bf;
+    --chatzz-text-muted: #6d7885;
+    --chatzz-text-glow: #dfe7f0;
+
+    --chatzz-accent-rgb: 143, 163, 184;
+    --chatzz-bg-scrim: linear-gradient(rgba(6, 7, 8, 0.72), rgba(6, 7, 8, 0.72));
+
+    --chatzz-glow-cyan: 0 2px 8px rgba(143, 163, 184, 0.30);
+    --chatzz-glow-magenta: 0 2px 8px rgba(168, 180, 196, 0.30);
+    --chatzz-glow-text: 0 0 6px rgba(143, 163, 184, 0.35);
+}
+
+/* ============================================
+   NEON - synthwave pink/cyan on void purple
+   ============================================ */
+:root[data-chatzz-theme='neon'] {
+    --chatzz-neon-cyan: #00e5ff;
+    --chatzz-neon-magenta: #ff2ec4;
+    --chatzz-neon-purple: #b026ff;
+    --chatzz-neon-blue: #2e6bff;
+    --chatzz-neon-green: #00ff9f;
+    --chatzz-neon-yellow: #ffe066;
+    --chatzz-neon-orange: #ff9e3d;
+    --chatzz-neon-red: #ff3366;
+
+    --chatzz-bg-dark: #0a0614;
+    --chatzz-bg-darker: #050309;
+    --chatzz-bg-panel: #120a20;
+    --chatzz-bg-input: #1a0f2e;
+    --chatzz-bg-hover: rgba(0, 229, 255, 0.12);
+    --chatzz-bg-active: rgba(255, 46, 196, 0.20);
+
+    --chatzz-btn-dark: #221238;
+    --chatzz-btn-close: #221238;
+    --chatzz-btn-send: #221238;
+
+    --chatzz-border: #3a2354;
+    --chatzz-border-hover: #6f3fa0;
+    --chatzz-border-focus: #00e5ff;
+
+    --chatzz-text-primary: #f2eaff;
+    --chatzz-text-secondary: #c5aed6;
+    --chatzz-text-muted: #8a75a3;
+    --chatzz-text-glow: #a6f3ff;
+
+    --chatzz-accent-rgb: 0, 229, 255;
+    --chatzz-bg-scrim: linear-gradient(rgba(5, 3, 9, 0.72), rgba(5, 3, 9, 0.72));
+
+    --chatzz-glow-cyan: 0 2px 8px rgba(0, 229, 255, 0.45);
+    --chatzz-glow-magenta: 0 2px 8px rgba(255, 46, 196, 0.45);
+    --chatzz-glow-text: 0 0 6px rgba(0, 229, 255, 0.55);
+}
+
+/* ============================================
+   CRIMSON (default) - explicit override so the
+   swatch/grid logic treats it like any theme
+   ============================================ */
+:root[data-chatzz-theme='crimson'] {
+    --chatzz-accent-rgb: 192, 32, 46;
+    --chatzz-bg-scrim: linear-gradient(rgba(13, 5, 7, 0.72), rgba(13, 5, 7, 0.72));
+}
+
+/* ============================================
+   THEME SWATCH PREVIEWS
+   ============================================ */
+.chatzz-theme-preview.crimson {
+    background: linear-gradient(135deg, #c0202e, #0d0507);
+}
+
+.chatzz-theme-preview.void {
+    background: linear-gradient(135deg, #8fa3b8, #060708);
+}
+
+.chatzz-theme-preview.neon {
+    background: linear-gradient(135deg, #00e5ff, #ff2ec4);
+}

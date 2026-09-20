@@ -1,0 +1,92 @@
+{{!-- Stealth Monitor - Simplified --}}
+<div class="chatzz-monitor-container">
+    <div class="chatzz-monitor-header">
+        <div class="chatzz-monitor-title">
+            <i class="fas fa-eye"></i>
+            <span>Stealth Monitor</span>
+            <span class="chatzz-msg-count">{{messageCount}}</span>
+        </div>
+    </div>
+
+    {{!-- Filters --}}
+    <div class="chatzz-monitor-controls">
+        <input type="text" class="chatzz-monitor-search" placeholder="Search..." value="{{searchQuery}}">
+        
+        <div class="chatzz-filter-btns">
+            <button type="button" class="chatzz-filter-btn {{#if (eq filterType 'all')}}active{{/if}}" data-filter="all">All</button>
+            <button type="button" class="chatzz-filter-btn {{#if (eq filterType 'private')}}active{{/if}}" data-filter="private">
+                <i class="fas fa-lock"></i>
+            </button>
+            <button type="button" class="chatzz-filter-btn {{#if (eq filterType 'group')}}active{{/if}}" data-filter="group">
+                <i class="fas fa-users"></i>
+            </button>
+        </div>
+
+        <div class="chatzz-toggle-options">
+            <button type="button" class="chatzz-toggle-btn {{#if autoScroll}}active{{/if}}" data-action="toggleAutoScroll" title="Auto-scroll">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+        </div>
+    </div>
+
+    {{!-- Two Column Layout --}}
+    <div class="chatzz-monitor-body">
+        {{!-- User Sidebar --}}
+        <div class="chatzz-user-sidebar">
+            <h4>Filter by User</h4>
+            {{#if selectedUsers.length}}
+            <button type="button" class="chatzz-btn-small" data-action="clearUserFilter">
+                <i class="fas fa-times"></i> Clear
+            </button>
+            {{/if}}
+            <div class="chatzz-user-list">
+                {{#each involvedUsers}}
+                <label class="chatzz-user-filter-item">
+                    <input type="checkbox" class="chatzz-user-filter" data-user-id="{{this.id}}" {{#if (includes ../selectedUsers this.id)}}checked{{/if}}>
+                    <img src="{{this.avatar}}" alt="" class="chatzz-user-avatar-small">
+                    <span>{{this.name}}</span>
+                </label>
+                {{else}}
+                <p class="chatzz-no-users">No users yet</p>
+                {{/each}}
+            </div>
+        </div>
+
+        {{!-- Message Log --}}
+        <div class="chatzz-monitor-messages">
+            {{#each messages}}
+            <div class="chatzz-monitor-message {{#if this.isGroup}}group{{else}}private{{/if}}" data-message-id="{{this.id}}">
+                <div class="chatzz-monitor-msg-header">
+                    <img src="{{this.senderAvatar}}" alt="" class="chatzz-monitor-avatar">
+                    <span class="chatzz-monitor-sender">{{this.senderName}}</span>
+                    {{#if this.groupName}}
+                    <span class="chatzz-monitor-channel"><i class="fas fa-users"></i> {{this.groupName}}</span>
+                    {{else if this.recipientName}}
+                    <span class="chatzz-monitor-recipient"><i class="fas fa-arrow-right"></i> {{this.recipientName}}</span>
+                    {{/if}}
+                    <span class="chatzz-monitor-time">{{this.relativeTime}}</span>
+                </div>
+                <div class="chatzz-monitor-msg-content">{{{this.content}}}</div>
+            </div>
+            {{else}}
+            <div class="chatzz-empty-state">
+                <i class="fas fa-eye"></i>
+                <p>No messages intercepted</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- Footer --}}
+    <div class="chatzz-monitor-footer">
+        <button type="button" class="chatzz-btn" data-action="exportLog">
+            <i class="fas fa-download"></i> Export
+        </button>
+        <button type="button" class="chatzz-btn" data-action="exportToJournal">
+            <i class="fas fa-book"></i> Journal
+        </button>
+        <button type="button" class="chatzz-btn chatzz-btn-danger" data-action="clearLog">
+            <i class="fas fa-trash"></i> Clear
+        </button>
+    </div>
+</div>

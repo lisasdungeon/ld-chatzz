@@ -1,0 +1,334 @@
+.chatzz-user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--chatzz-spacing-xs);
+    padding: var(--chatzz-spacing-md);
+    background: var(--chatzz-bg-darker);
+    border: 2px solid transparent;
+    border-radius: var(--chatzz-radius-md);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    position: relative;
+}
+
+.chatzz-user-card:hover {
+    background: var(--chatzz-bg-hover);
+    border-color: var(--chatzz-border);
+    transform: translateY(-2px);
+}
+
+.chatzz-user-card.selected {
+    border-color: var(--chatzz-neon-cyan);
+    background: rgba(var(--chatzz-accent-rgb),0.12);
+    box-shadow: 0 0 15px rgba(0,0,0,0.10);
+}
+
+.chatzz-user-card .chatzz-user-avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.chatzz-user-card .chatzz-avatar-initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.chatzz-user-card .chatzz-user-name {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--chatzz-text-primary);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chatzz-user-card .chatzz-user-status {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.chatzz-user-card .chatzz-user-status.online {
+    background: rgba(var(--chatzz-accent-rgb),0.15);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-user-card .chatzz-user-status.offline {
+    background: rgba(128, 128, 128, 0.2);
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-user-card .chatzz-selected-check {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: var(--chatzz-neon-cyan);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--chatzz-bg-dark);
+    font-size: 10px;
+    opacity: 0;
+    transform: scale(0);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-user-card.selected .chatzz-selected-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.chatzz-start-chat-btn {
+    margin-top: var(--chatzz-spacing-md);
+    width: 100%;
+}
+
+/* ===== USER BACKGROUND GRID (GM Tools) ===== */
+.chatzz-user-bg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: var(--chatzz-spacing-sm);
+    margin-top: var(--chatzz-spacing-md);
+}
+
+.chatzz-user-bg-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--chatzz-spacing-xs);
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border-radius: var(--chatzz-radius-sm);
+    text-align: center;
+}
+
+.chatzz-user-bg-card .chatzz-user-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.chatzz-user-bg-card .chatzz-user-name {
+    font-size: 11px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ===== THEME GRID ===== */
+.chatzz-theme-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-theme-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border: 2px solid transparent;
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-theme-option:hover {
+    border-color: var(--chatzz-border);
+}
+
+.chatzz-theme-option.selected {
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: 0 0 10px rgba(0,0,0,0.10);
+}
+
+.chatzz-theme-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--chatzz-radius-sm);
+    background: linear-gradient(135deg, var(--chatzz-neon-cyan), var(--chatzz-neon-magenta));
+}
+
+.chatzz-theme-preview.neon { background: linear-gradient(135deg, #00fff2, #ff00ff); }
+.chatzz-theme-preview.matrix { background: linear-gradient(135deg, #00ff00, #003300); }
+.chatzz-theme-preview.cyber { background: linear-gradient(135deg, #ff6b35, #f7c59f); }
+.chatzz-theme-preview.midnight { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+.chatzz-theme-preview.plasma { background: linear-gradient(135deg, #7b2cbf, #e0aaff); }
+.chatzz-theme-preview.hologram { background: linear-gradient(135deg, #00d4ff, #090979); }
+
+
+.chatzz-theme-name {
+    font-size: 10px;
+    color: var(--chatzz-text-secondary);
+    text-transform: uppercase;
+}
+
+/* ===== SETTINGS ROWS ===== */
+.chatzz-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--chatzz-spacing-sm) 0;
+    border-bottom: 1px solid var(--chatzz-border);
+}
+
+.chatzz-setting-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chatzz-setting-info label {
+    color: var(--chatzz-text-primary);
+    font-size: 13px;
+}
+
+.chatzz-setting-hint {
+    font-size: 11px;
+    color: var(--chatzz-text-secondary);
+}
+
+/* ===== TOGGLE SWITCH ===== */
+.chatzz-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.chatzz-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.chatzz-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: 24px;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--chatzz-text-secondary);
+    border-radius: 50%;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-toggle input:checked + .chatzz-toggle-slider {
+    background: rgba(var(--chatzz-accent-rgb),0.20);
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-toggle input:checked + .chatzz-toggle-slider:before {
+    transform: translateX(20px);
+    background: var(--chatzz-neon-cyan);
+    box-shadow: 0 0 10px var(--chatzz-neon-cyan);
+}
+
+/* ===== VOLUME CONTROL ===== */
+.chatzz-volume-control {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-volume-control input[type="range"] {
+    width: 100px;
+    accent-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-volume-value {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    min-width: 40px;
+}
+
+/* ===== SOUND SELECT ===== */
+.chatzz-sound-select {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-sound-select select {
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    color: var(--chatzz-text-primary);
+    min-width: 120px;
+}
+
+/* ===== GM TOOLS ===== */
+.chatzz-gm-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-btn-gm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: var(--chatzz-spacing-md);
+    background: rgba(var(--chatzz-accent-rgb),0.07);
+    border: 1px solid var(--chatzz-neon-magenta);
+    border-radius: var(--chatzz-radius-md);
+    color: var(--chatzz-text-primary);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    text-align: left;
+}
+
+.chatzz-btn-gm:hover {
+    background: rgba(var(--chatzz-accent-rgb),0.15);
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.chatzz-btn-gm i {
+    font-size: 20px;
+    color: var(--chatzz-neon-magenta);
+}
+
+.chatzz-btn-gm span {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.chatzz-btn-gm small {
+    font-size: 11px;
+    color: var(--chatzz-text-secondary);
+}
+
+/* ===== GM BACKGROUNDS ===== */

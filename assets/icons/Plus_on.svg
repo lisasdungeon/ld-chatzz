@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Glow layer -->
+  <circle cx="18" cy="18" r="14" fill="#7a0808" opacity="0.3"/>
+  <!-- Circle ring active -->
+  <circle cx="18" cy="18" r="13" fill="#200b0b" stroke="#cc2222" stroke-width="1.5"/>
+  <!-- Plus crosshair active -->
+  <line x1="18" y1="10" x2="18" y2="26" stroke="#cc2222" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="10" y1="18" x2="26" y2="18" stroke="#cc2222" stroke-width="2.8" stroke-linecap="round"/>
+</svg>

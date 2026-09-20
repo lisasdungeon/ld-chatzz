@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Paper plane / send icon active -->
+  <!-- Main body (triangle shape) -->
+  <polygon points="4,4 32,18 4,32 8,18"
+           fill="#200b0b" stroke="#cc2222" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Inner fold line -->
+  <line x1="8" y1="18" x2="20" y2="18" stroke="#cc2222" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Wing tip glow -->
+  <circle cx="32" cy="18" r="2.5" fill="#cc2222" opacity="0.5"/>
+  <circle cx="32" cy="18" r="1.2" fill="#ff5a5a"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Primary chat bubble active -->
+  <path d="M5 9 Q5 6 8 6 L22 6 Q25 6 25 9 L25 19 Q25 22 22 22 L13 22 L8 27 L8 22 L8 22 Q5 22 5 19 Z"
+        fill="#200b0b" stroke="#cc2222" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Message dots -->
+  <circle cx="11" cy="14" r="1.3" fill="#cc2222"/>
+  <circle cx="15" cy="14" r="1.3" fill="#cc2222"/>
+  <circle cx="19" cy="14" r="1.3" fill="#cc2222"/>
+  <!-- Secondary chat bubble active -->
+  <path d="M27 12 Q31 12 31 15 L31 22 Q31 25 27 25 L25 25 L25 22"
+        fill="none" stroke="#cc2222" stroke-width="1.3" stroke-linejoin="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Eye shape outline inactive -->
+  <path d="M5 18 Q18 6 31 18 Q18 30 5 18 Z"
+        fill="none" stroke="#6b2a2a" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Iris circle -->
+  <circle cx="18" cy="18" r="5" fill="none" stroke="#6b2a2a" stroke-width="1.4"/>
+  <!-- Pupil dot -->
+  <circle cx="18" cy="18" r="2" fill="#6b2a2a"/>
+  <!-- Slash line (stealth / hidden) -->
+  <line x1="9" y1="9" x2="27" y2="27" stroke="#6b2a2a" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

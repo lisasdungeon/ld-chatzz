@@ -1,0 +1,427 @@
+.chatzz-gm-backgrounds {
+    margin-top: var(--chatzz-spacing-md);
+}
+
+.chatzz-user-bg-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: var(--chatzz-spacing-sm);
+}
+
+.chatzz-user-bg-list > label {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    margin-bottom: 4px;
+}
+
+.chatzz-user-bg-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border-radius: var(--chatzz-radius-sm);
+}
+
+.chatzz-new-chat-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-md);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.chatzz-new-chat-btn:hover {
+    background: var(--chatzz-bg-hover);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+/* Hub Sections */
+.chatzz-hub-section {
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-hub-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-xs) 0;
+    border-bottom: 1px solid var(--chatzz-border);
+    margin-bottom: var(--chatzz-spacing-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-hub-section-header:hover {
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-hub-section-header i {
+    font-size: 12px;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-hub-section-header.collapsed i {
+    transform: rotate(-90deg);
+}
+
+.chatzz-hub-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-hub-section-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-hub-section-header.collapsed + .chatzz-hub-section-content {
+    display: none;
+}
+
+/* Conversation Item */
+.chatzz-conversation-item {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-sm);
+    border-radius: var(--chatzz-radius-md);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    border: 1px solid transparent;
+}
+
+.chatzz-conversation-item:hover {
+    background: var(--chatzz-bg-hover);
+    border-color: var(--chatzz-border);
+}
+
+.chatzz-conversation-item.has-unread {
+    background: rgba(var(--chatzz-accent-rgb), 0.10);
+    border-color: var(--chatzz-border);
+}
+
+.chatzz-conversation-item .conv-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--chatzz-border);
+    position: relative;
+}
+
+.chatzz-conversation-item .conv-avatar-initials {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--chatzz-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.chatzz-conversation-item .online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--chatzz-neon-green);
+    border-radius: 50%;
+    border: 2px solid var(--chatzz-bg-panel);
+}
+
+.chatzz-conversation-item .conv-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chatzz-conversation-item .conv-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatzz-conversation-item .conv-preview {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatzz-conversation-item .conv-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.chatzz-conversation-item .conv-time {
+    font-size: 11px;
+    color: var(--chatzz-text-muted);
+}
+
+.chatzz-conversation-item .unread-badge {
+    background: var(--chatzz-neon-orange);
+    color: var(--chatzz-text-primary);
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* ============================================
+   GROUP MANAGER
+   ============================================ */
+.chatzz-group-manager {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--chatzz-spacing-md);
+}
+
+.chatzz-group-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-group-card {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-md);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-group-card:hover {
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-group-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--chatzz-spacing-sm);
+}
+
+.chatzz-group-name {
+    font-weight: 600;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-group-actions {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-group-actions button {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-group-actions button:hover {
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-group-actions button.delete:hover {
+    border-color: var(--chatzz-neon-red);
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-group-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-member-tag {
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+/* Create Group Form */
+.chatzz-create-group {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-create-group h3 {
+    font-size: 14px;
+    color: var(--chatzz-neon-cyan);
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-form-group {
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-form-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    margin-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-form-group input {
+    width: 100%;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    padding: var(--chatzz-spacing-sm);
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+}
+
+.chatzz-form-group input:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-member-checkboxes {
+    max-height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-member-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-xs);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-member-checkbox:hover {
+    background: var(--chatzz-bg-hover);
+}
+
+.chatzz-member-checkbox input[type="checkbox"] {
+    accent-color: var(--chatzz-neon-cyan);
+}
+
+/* ============================================
+   GM MONITOR
+   ============================================ */
+.chatzz-gm-monitor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--chatzz-spacing-md);
+}
+
+.chatzz-monitor-controls {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    flex-wrap: wrap;
+}
+
+.chatzz-monitor-controls select,
+.chatzz-monitor-controls input {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+}
+
+.chatzz-monitor-controls select:focus,
+.chatzz-monitor-controls input:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-monitor-feed {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-monitor-entry {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+}
+
+.chatzz-monitor-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-monitor-entry-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.chatzz-monitor-entry-type.private {
+    background: rgba(var(--chatzz-accent-rgb),0.12);
+    color: var(--chatzz-neon-magenta);
+}
+
+.chatzz-monitor-entry-type.group {
+    background: rgba(var(--chatzz-accent-rgb),0.12);
+    color: var(--chatzz-neon-blue);
+}
+
+.chatzz-monitor-entry-type.channel {
+    background: rgba(var(--chatzz-accent-rgb),0.16);
+    color: var(--chatzz-neon-green);
+}
+
+.chatzz-monitor-entry-time {
+    font-size: 11px;
+    color: var(--chatzz-text-muted);
+}
+
+.chatzz-monitor-entry-users {
+    font-size: 12px;
+    color: var(--chatzz-neon-cyan);
+    margin-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-monitor-entry-content {
+    font-size: 13px;
+    color: var(--chatzz-text-primary);
+}
+

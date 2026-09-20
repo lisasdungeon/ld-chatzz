@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Circle glow layer -->
+  <circle cx="18" cy="18" r="14" fill="#7a0808" opacity="0.3"/>
+  <!-- Circle ring active -->
+  <circle cx="18" cy="18" r="13" fill="#200b0b" stroke="#cc2222" stroke-width="1.5"/>
+  <!-- X lines active -->
+  <line x1="12" y1="12" x2="24" y2="24" stroke="#cc2222" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="24" y1="12" x2="12" y2="24" stroke="#cc2222" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

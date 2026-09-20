@@ -1,0 +1,470 @@
+/* ============================================
+   LD CHATZZ - CRIMSON BLOOD THEME
+   Dark, blood-red encrypted communications
+   ============================================ */
+
+/* ============================================
+   SAO FONTS
+   ============================================ */
+@font-face {
+    font-family: 'SAOUI';
+    src: url('../fonts/SAOUI-Bold.otf') format('opentype'),
+         url('../fonts/SAOUITT-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SAOUI';
+    src: url('../fonts/SAOUI-Regular.otf') format('opentype'),
+         url('../fonts/SAOUITT-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SAOUIWelcome';
+    src: url('../fonts/SAOUIWelcome-Bold.otf') format('opentype'),
+         url('../fonts/SAOWelcomeTT-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SAOUIWelcome';
+    src: url('../fonts/SAOUIWelcome-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================ */
+:root {
+    /* Accent Colors (Crimson Blood) */
+    --chatzz-neon-cyan: #c0202e;
+    --chatzz-neon-magenta: #d43a4a;
+    --chatzz-neon-purple: #8a1622;
+    --chatzz-neon-blue: #a01a28;
+    --chatzz-neon-green: #c0202e;
+    --chatzz-neon-yellow: #e6b89c;
+    --chatzz-neon-orange: #e05a5a;
+    --chatzz-neon-red: #ff3333;
+
+    /* Backgrounds */
+    --chatzz-bg-dark: #14090b;
+    --chatzz-bg-darker: #0d0507;
+    --chatzz-bg-panel: #1c0e11;
+    --chatzz-bg-input: #241317;
+    --chatzz-bg-hover: rgba(192, 32, 46, 0.15);
+    --chatzz-bg-active: rgba(192, 32, 46, 0.28);
+
+    /* Button Colors */
+    --chatzz-btn-dark: #2a1013;
+    --chatzz-btn-close: #2a1013;
+    --chatzz-btn-send: #2a1013;
+
+    /* Border Colors */
+    --chatzz-border: #4a2028;
+    --chatzz-border-hover: #7a2a35;
+    --chatzz-border-focus: #c0202e;
+
+    /* Text Colors */
+    --chatzz-text-primary: #f2e6e6;
+    --chatzz-text-secondary: #c9a9ad;
+    --chatzz-text-muted: #8a6b70;
+    --chatzz-text-glow: #ff9e9e;
+
+    /* Shadows (blood-red glow) */
+    --chatzz-glow-cyan: 0 2px 8px rgba(192, 32, 46, 0.45);
+    --chatzz-glow-magenta: 0 2px 8px rgba(212, 58, 74, 0.45);
+    --chatzz-glow-text: 0 0 6px rgba(192, 32, 46, 0.55);
+
+    /* Theme plumbing (accent RGB + background scrim, re-themed in chatzz-themes.css) */
+    --chatzz-accent-rgb: 192, 32, 46;
+    --chatzz-bg-scrim: linear-gradient(rgba(13, 5, 7, 0.72), rgba(13, 5, 7, 0.72));
+
+    /* Spacing */
+    --chatzz-spacing-xs: 4px;
+    --chatzz-spacing-sm: 8px;
+    --chatzz-spacing-md: 12px;
+    --chatzz-spacing-lg: 16px;
+    --chatzz-spacing-xl: 24px;
+
+    /* Border Radius */
+    --chatzz-radius-sm: 4px;
+    --chatzz-radius-md: 8px;
+    --chatzz-radius-lg: 12px;
+
+    /* Transitions */
+    --chatzz-transition: 0.2s ease;
+    --chatzz-transition-slow: 0.4s ease;
+}
+
+/* ============================================
+   BASE WINDOW STYLES
+   ============================================ */
+.chatzz-window,
+.ld-chatzz {
+    background: var(--chatzz-bg-panel);
+    border: 2px solid var(--chatzz-border) !important;
+    border-radius: var(--chatzz-radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+    outline: none !important;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    color: var(--chatzz-text-primary);
+    overflow: hidden;
+}
+
+/* Window Header */
+.chatzz-window .window-header,
+.ld-chatzz .window-header {
+    background: linear-gradient(180deg, var(--chatzz-btn-dark), var(--chatzz-bg-panel));
+    border-bottom: 1px solid var(--chatzz-border);
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 48px;
+}
+
+.chatzz-window .window-header .window-title {
+    font-family: 'SAOUIWelcome', 'SAOUI', 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--chatzz-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: none;
+    text-align: center;
+    flex: 1;
+}
+
+.chatzz-window .window-header .header-control,
+.chatzz-window .window-header .header-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--chatzz-text-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    position: absolute;
+    right: var(--chatzz-spacing-md);
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+}
+
+.chatzz-window .window-header .header-control:hover,
+.chatzz-window .window-header .header-button:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.1);
+}
+
+.chatzz-window .window-header .header-control:active,
+.chatzz-window .window-header .header-button:active {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(0.95);
+}
+
+.chatzz-window .window-header .close-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* Suppress the FontAwesome xmark pseudo-element on the close button. Our No.png image replaces it. */
+.chatzz-window .window-header [data-action="close"]::before,
+.chatzz-window .window-header [data-action="close"]::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Zero out font-size so any residual FA icon text doesn't render */
+.chatzz-window .window-header [data-action="close"] {
+    font-size: 0 !important;
+}
+
+/* Window Content */
+.chatzz-window .window-content,
+.ld-chatzz .window-content {
+    padding: var(--chatzz-spacing-md);
+    height: calc(100% - 50px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   CHAT WINDOW
+   ============================================ */
+.chatzz-chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0;
+    position: relative;
+    background: var(--chatzz-bg-dark);
+}
+
+/* Chat Background Support */
+.chatzz-chat-container.has-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--chat-background);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.chatzz-chat-container.has-background > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Chat Header */
+.chatzz-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border-radius: var(--chatzz-radius-md);
+    border: 1px solid var(--chatzz-border);
+}
+
+.chatzz-chat-header .user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-chat-header .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+    object-fit: cover;
+}
+
+.chatzz-chat-header .user-avatar-initials {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--chatzz-bg-dark);
+}
+
+.chatzz-chat-header .user-name {
+    font-family: 'SAOUI', 'Rajdhani', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-chat-header .user-status {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-chat-header .user-status.online {
+    color: var(--chatzz-neon-green);
+}
+
+.chatzz-chat-header .user-status.offline {
+    color: var(--chatzz-text-muted);
+}
+
+/* Header Actions */
+.chatzz-header-actions {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+}
+
+.chatzz-header-actions .action-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatzz-header-actions .action-btn:hover {
+    background: var(--chatzz-bg-hover);
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-header-actions .action-btn.active {
+    background: var(--chatzz-bg-active);
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-header-actions .action-btn.favorite.active {
+    color: var(--chatzz-neon-yellow);
+    border-color: var(--chatzz-neon-yellow);
+}
+
+.chatzz-header-actions .action-btn.muted.active {
+    color: var(--chatzz-neon-red);
+    border-color: var(--chatzz-neon-red);
+}
+
+/* Search Bar */
+.chatzz-search-bar {
+    display: none;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border-radius: var(--chatzz-radius-md);
+    border: 1px solid var(--chatzz-border);
+}
+
+.chatzz-search-bar.visible {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    align-items: center;
+}
+
+.chatzz-search-bar input {
+    flex: 1;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    padding: var(--chatzz-spacing-sm);
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+}
+
+.chatzz-search-bar input:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-search-bar .search-nav {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+    align-items: center;
+}
+
+.chatzz-search-bar .search-count {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+.chatzz-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-md);
+    background: var(--chatzz-bg-input);
+    border-bottom: 1px solid var(--chatzz-border);
+}
+
+.chatzz-toolbar-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-toolbar-right {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-search-input {
+    flex: 1;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: 20px;
+    padding: 6px var(--chatzz-spacing-md);
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.chatzz-search-input:focus {
+    outline: none;
+    border-color: var(--chatzz-border-focus);
+}
+
+.chatzz-search-input::placeholder {
+    color: var(--chatzz-text-muted);
+}
+
+.chatzz-toolbar-btn {
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-primary);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 0;
+    overflow: visible;
+}
+
+.chatzz-toolbar-btn .btn-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.chatzz-toolbar-btn:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.1);
+}
+
+.chatzz-toolbar-btn:active {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(0.95);
+}
+
+.chatzz-toolbar-btn.active {
+    background: transparent;
+}
+
+.chatzz-toolbar-btn.chatzz-favorite-btn.active {
+    background: transparent;
+}
+

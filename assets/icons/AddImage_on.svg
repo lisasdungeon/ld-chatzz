@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Image frame active -->
+  <rect x="3" y="7" width="22" height="17" rx="2" ry="2" fill="#200b0b" stroke="#cc2222" stroke-width="1.5"/>
+  <!-- Mountain landscape inside frame -->
+  <polyline points="3,20 8,13 13,17 17,11 25,20" fill="none" stroke="#cc2222" stroke-width="1.3" stroke-linejoin="round"/>
+  <!-- Sun circle filled -->
+  <circle cx="9" cy="11" r="1.8" fill="#cc2222"/>
+  <!-- Plus badge active (top-right corner) -->
+  <circle cx="28" cy="9" r="5.5" fill="#200b0b" stroke="#cc2222" stroke-width="1.5"/>
+  <line x1="28" y1="5.5" x2="28" y2="12.5" stroke="#cc2222" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="24.5" y1="9" x2="31.5" y2="9" stroke="#cc2222" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

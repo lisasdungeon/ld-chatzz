@@ -1,0 +1,450 @@
+/* ============================================
+   PLAYER HUB TABS
+   ============================================ */
+.chatzz-hub-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--chatzz-border);
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-hub-tab {
+    flex: 1;
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-md);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--chatzz-text-secondary);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.chatzz-hub-tab:hover {
+    color: var(--chatzz-text-primary);
+    background: var(--chatzz-bg-hover);
+}
+
+.chatzz-hub-tab.active {
+    color: var(--chatzz-neon-cyan);
+    border-bottom-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-hub-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chatzz-hub-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.chatzz-settings-section {
+    margin-bottom: var(--chatzz-spacing-lg);
+}
+
+.chatzz-settings-section h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--chatzz-neon-cyan);
+    margin-bottom: var(--chatzz-spacing-sm);
+    border-bottom: 1px solid var(--chatzz-border);
+    padding-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--chatzz-spacing-sm) 0;
+}
+
+.chatzz-setting-row label {
+    font-size: 13px;
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-gm-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-gm-tool-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--chatzz-spacing-xs);
+    padding: var(--chatzz-spacing-md);
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    color: var(--chatzz-text-primary);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-gm-tool-btn:hover {
+    border-color: var(--chatzz-neon-cyan);
+    background: var(--chatzz-bg-hover);
+}
+
+.chatzz-gm-tool-btn i {
+    font-size: 24px;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-export-buttons {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    margin-top: var(--chatzz-spacing-sm);
+}
+
+/* Ensure windows render on top when opened */
+.ld-chatzz {
+    z-index: 200;
+}
+
+.ld-chatzz:focus-within,
+.ld-chatzz.focused {
+    z-index: 201;
+}
+
+/* Window Title with Logo */
+.chatzz-window-title-container {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-window-title-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: titleLogoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleLogoGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0,0,0,0.20);
+    }
+}
+
+/* Ensure FilePicker dialogs render above all module windows */
+.filepicker, .filepicker .dialog, .file-picker, .fp-dialog, .file-picker-dialog {
+  z-index: 999999 !important;
+}
+
+/* ===== WINDOW CONTENT LOGO ===== */
+.chatzz-window .window-content .chatzz-header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--chatzz-spacing-sm);
+    margin-bottom: var(--chatzz-spacing-sm);
+    border-bottom: 1px solid var(--chatzz-border);
+    background: rgba(var(--chatzz-accent-rgb),0.06);
+}
+
+.chatzz-window .window-content .chatzz-header-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: headerLogoPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px var(--chatzz-neon-cyan));
+    border: 2px solid var(--chatzz-neon-cyan);
+    transition: all 0.3s ease;
+}
+
+.chatzz-window .window-content .chatzz-header-logo img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--chatzz-neon-cyan))
+           drop-shadow(0 0 15px var(--chatzz-neon-magenta));
+}
+
+/* ===== SIMPLIFIED MONITOR STYLES ===== */
+.chatzz-monitor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--chatzz-spacing-md);
+    gap: var(--chatzz-spacing-md);
+}
+
+.chatzz-monitor-header {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-md);
+}
+
+.chatzz-monitor-title {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-msg-count {
+    background: var(--chatzz-neon-magenta);
+    color: var(--chatzz-bg-dark);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.chatzz-monitor-search {
+    flex: 1;
+    max-width: 200px;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-monitor-footer {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    padding-top: var(--chatzz-spacing-md);
+    border-top: 1px solid var(--chatzz-border);
+}
+
+.chatzz-monitor-msg-header {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    margin-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-monitor-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.chatzz-monitor-sender {
+    font-weight: 600;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-monitor-channel,
+.chatzz-monitor-recipient {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-monitor-time {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--chatzz-text-muted);
+}
+
+.chatzz-monitor-msg-content {
+    font-size: 13px;
+    color: var(--chatzz-text-primary);
+    padding-left: 36px;
+}
+
+/* ===== GROUP MANAGER STYLES ===== */
+.chatzz-manager-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-manager-header {
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-manager-header h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    margin: 0;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-manager-content {
+    flex: 1;
+    min-height: 0;
+}
+
+.chatzz-group-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--chatzz-spacing-sm);
+}
+
+.chatzz-group-item {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-group-item:hover {
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-group-info {
+    flex: 1;
+}
+
+.chatzz-group-name {
+    font-weight: 600;
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-group-meta {
+    font-size: 11px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-form-group {
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-form-group label {
+    display: block;
+    margin-bottom: var(--chatzz-spacing-xs);
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-form-group input[type="text"] {
+    width: 100%;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    padding: var(--chatzz-spacing-sm);
+}
+
+.chatzz-member-option {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-xs);
+    cursor: pointer;
+    border-radius: var(--chatzz-radius-sm);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-member-option:hover {
+    background: var(--chatzz-bg-hover);
+}
+
+/* ===== MODERATION WINDOW STYLES ===== */
+.chatzz-mod-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-mod-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-mod-header h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    margin: 0;
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-mod-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-lg);
+    overflow-y: auto;
+}
+
+.chatzz-mod-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--chatzz-spacing-sm);
+}
+
+.chatzz-mod-section-header h4 {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    margin: 0;
+    font-size: 14px;
+    color: var(--chatzz-neon-magenta);
+}
+
+.chatzz-mod-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.chatzz-mod-item {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-md);
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+}
+
+.chatzz-mod-item-info {
+    flex: 1;
+}
+
+.chatzz-mod-item-name {
+    font-weight: 500;
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-mod-item-count,
+.chatzz-mod-item-meta {
+    font-size: 11px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-mod-item-actions {
+    display: flex;
+    gap: var(--chatzz-spacing-xs);
+}
+

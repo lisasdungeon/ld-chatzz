@@ -1,0 +1,319 @@
+{{!-- Player Hub - Simplified Layout --}}
+
+<div class="chatzz-hub-container">
+    {{!-- Tab Content --}}
+    <div class="chatzz-tab-panels">
+        
+        {{!-- CONVERSATIONS TAB --}}
+        <div class="chatzz-tab-content active" data-tab-content="conversations">
+            {{!-- Search --}}
+            <div class="chatzz-search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" class="chatzz-hub-search" placeholder="Search...">
+            </div>
+
+            {{!-- Conversation List --}}
+            <div class="chatzz-conversation-list">
+                {{#if conversations.length}}
+                    {{#each conversations}}
+                    <div class="chatzz-conv-item {{#if hasUnread}}has-unread{{/if}}" 
+                         data-conversation-id="{{id}}" 
+                         data-type="{{type}}"
+                         data-user-id="{{otherUserId}}"
+                         data-actor-id="{{otherActorId}}">
+                        <div class="chatzz-conv-avatar">
+                            {{#if avatar}}
+                            <img src="{{avatar}}" alt="{{name}}">
+                            {{else}}
+                            <div class="chatzz-avatar-initials" style="background: {{color}}">
+                                {{initials}}
+                            </div>
+                            {{/if}}
+                            {{#if isOnline}}
+                            <span class="chatzz-online-dot"></span>
+                            {{/if}}
+                        </div>
+                        <div class="chatzz-conv-info">
+                            <div class="chatzz-conv-name">
+                                {{#if isFavorite}}<i class="fas fa-star chatzz-fav-icon"></i>{{/if}}
+                                {{name}}
+                                {{#if isGM}}<span class="chatzz-gm-badge">GM</span>{{/if}}
+                            </div>
+                            {{#if lastMessage}}
+                            <div class="chatzz-conv-preview">{{lastMessage.preview}}</div>
+                            {{/if}}
+                        </div>
+                        <div class="chatzz-conv-meta">
+                            {{#if lastMessage}}
+                            <span class="chatzz-conv-time">{{lastMessage.time}}</span>
+                            {{/if}}
+                            {{#if hasUnread}}
+                            <span class="chatzz-unread-count">{{unreadCount}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                    <div class="chatzz-empty-state">
+                        <i class="fas fa-comments"></i>
+                        <p>No conversations</p>
+                    </div>
+                {{/if}}
+            </div>
+
+        </div>
+
+        {{!-- NEW CHAT TAB - 2 Column Layout --}}
+        <div class="chatzz-tab-content" data-tab-content="newchat">
+            <div class="chatzz-two-column">
+                {{!-- GMs Column --}}
+                <div class="chatzz-column chatzz-gm-column">
+                    <div class="chatzz-column-header">
+                        <i class="fas fa-crown"></i>
+                        <span>Game Masters</span>
+                    </div>
+                    <div class="chatzz-user-list">
+                        {{#each gmUsers}}
+                        <div class="chatzz-user-card" data-user-id="{{id}}">
+                            <div class="chatzz-user-avatar">
+                                {{#if avatar}}
+                                <img src="{{avatar}}" alt="{{name}}">
+                                {{else}}
+                                <div class="chatzz-avatar-initials" style="background: {{color}}">{{initials}}</div>
+                                {{/if}}
+                                {{#if isOnline}}<span class="chatzz-online-dot"></span>{{/if}}
+                            </div>
+                            <div class="chatzz-user-name">{{name}}</div>
+                            <div class="chatzz-user-status {{#if isOnline}}online{{else}}offline{{/if}}">
+                                {{#if isOnline}}Online{{else}}Offline{{/if}}
+                            </div>
+                            <i class="fas fa-check chatzz-selected-check"></i>
+                        </div>
+                        {{else}}
+                        <div class="chatzz-empty-column">No GMs</div>
+                        {{/each}}
+                    </div>
+                </div>
+
+                {{!-- Players Column --}}
+                <div class="chatzz-column chatzz-player-column">
+                    <div class="chatzz-column-header">
+                        <i class="fas fa-users"></i>
+                        <span>Players</span>
+                    </div>
+                    <div class="chatzz-user-list">
+                        {{#each playerUsers}}
+                        <div class="chatzz-user-card" data-user-id="{{id}}">
+                            <div class="chatzz-user-avatar">
+                                {{#if avatar}}
+                                <img src="{{avatar}}" alt="{{name}}">
+                                {{else}}
+                                <div class="chatzz-avatar-initials" style="background: {{color}}">{{initials}}</div>
+                                {{/if}}
+                                {{#if isOnline}}<span class="chatzz-online-dot"></span>{{/if}}
+                            </div>
+                            <div class="chatzz-user-name">{{name}}</div>
+                            <div class="chatzz-user-status {{#if isOnline}}online{{else}}offline{{/if}}">
+                                {{#if isOnline}}Online{{else}}Offline{{/if}}
+                            </div>
+                            <i class="fas fa-check chatzz-selected-check"></i>
+                        </div>
+                        {{else}}
+                        <div class="chatzz-empty-column">No Players</div>
+                        {{/each}}
+                    </div>
+                </div>
+
+                {{!-- Characters Column --}}
+                <div class="chatzz-column chatzz-actor-column">
+                    <div class="chatzz-column-header">
+                        <i class="fas fa-mask"></i>
+                        <span>Characters</span>
+                    </div>
+                    <div class="chatzz-user-list">
+                        {{#each actorFriends}}
+                        <div class="chatzz-user-card chatzz-actor-card" data-actor-id="{{id}}" title="Open character chat">
+                            <div class="chatzz-user-avatar">
+                                {{#if avatar}}
+                                <img src="{{avatar}}" alt="{{name}}">
+                                {{else}}
+                                <div class="chatzz-avatar-initials" style="background: {{color}}">{{initials}}</div>
+                                {{/if}}
+                                {{#if isOnline}}<span class="chatzz-online-dot"></span>{{/if}}
+                            </div>
+                            <div class="chatzz-user-name">{{name}}</div>
+                            <div class="chatzz-user-status {{#if isOnline}}online{{else}}offline{{/if}}">
+                                {{#if isOnline}}Online{{else}}Offline{{/if}}
+                            </div>
+                            <i class="fas fa-comments chatzz-selected-check"></i>
+                        </div>
+                        {{else}}
+                        <div class="chatzz-empty-column">No approved characters</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <button class="chatzz-btn chatzz-btn-primary chatzz-start-chat-btn" data-action="createChat">
+                <i class="fas fa-comment"></i>
+                Start Chat
+            </button>
+        </div>
+
+        {{!-- SETTINGS TAB --}}
+        <div class="chatzz-tab-content" data-tab-content="settings">
+            {{!-- Sounds --}}
+            <div class="chatzz-section">
+                <h3><i class="fas fa-volume-up"></i> Sounds</h3>
+                
+                <div class="chatzz-setting-row">
+                    <label>Enable</label>
+                    <label class="chatzz-toggle">
+                        <input type="checkbox" data-action="toggleSounds" {{#if enableSounds}}checked{{/if}}>
+                        <span class="chatzz-toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="chatzz-setting-row">
+                    <label>Volume</label>
+                    <div class="chatzz-volume-control">
+                        <input type="range" min="0" max="100" step="5" value="{{soundVolume}}" data-action="setVolume">
+                        <span class="chatzz-volume-value">{{soundVolume}}%</span>
+                    </div>
+                </div>
+
+            </div>
+
+            {{!-- Notifications --}}
+            <div class="chatzz-section">
+                <h3><i class="fas fa-bell"></i> Notifications</h3>
+                <div class="chatzz-setting-row">
+                    <label>Desktop Alerts</label>
+                    <label class="chatzz-toggle">
+                        <input type="checkbox" data-action="toggleNotifications" {{#if enableNotifications}}checked{{/if}}>
+                        <span class="chatzz-toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            {{!-- Theme --}}
+            <div class="chatzz-section">
+                <h3><i class="fas fa-palette"></i> {{localize 'CHATZZ.ThemeSettings'}}</h3>
+                <div class="chatzz-theme-grid">
+                    {{#each themes}}
+                    <div class="chatzz-theme-option {{#if selected}}selected{{/if}}" data-action="selectTheme" data-theme="{{id}}" role="button" tabindex="0">
+                        <div class="chatzz-theme-preview {{id}}"></div>
+                        <span class="chatzz-theme-name">{{localize label}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{!-- Background --}}
+            <div class="chatzz-section">
+                <h3><i class="fas fa-image"></i> Background</h3>
+                <div class="chatzz-setting-row">
+                    <label>{{localize 'CHATZZ.PersonalBackground'}}</label>
+                    <div class="chatzz-export-buttons">
+                        <button class="chatzz-btn" data-action="setPersonalBackground" title="{{#if personalBackground}}{{personalBackground}}{{/if}}">
+                            <i class="fas fa-image"></i>
+                            {{localize 'CHATZZ.SetBackground'}}
+                        </button>
+                        {{#if personalBackground}}
+                        <button class="chatzz-btn" data-action="clearPersonalBackground">
+                            <i class="fas fa-eraser"></i>
+                            {{localize 'CHATZZ.ClearBackground'}}
+                        </button>
+                        {{/if}}
+                    </div>
+                </div>
+                <p class="chatzz-hint">{{localize 'CHATZZ.PersonalBackgroundHint'}}</p>
+            </div>
+
+            {{!-- Export --}}
+            <div class="chatzz-section">
+                <h3><i class="fas fa-file-export"></i> Export</h3>
+                <div class="chatzz-export-buttons">
+                    <button class="chatzz-btn" data-action="exportToJournal">
+                        <i class="fas fa-book"></i>
+                        Journal
+                    </button>
+                    <button class="chatzz-btn" data-action="exportLocal">
+                        <i class="fas fa-download"></i>
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {{!-- GM TOOLS TAB --}}
+        {{#if isGM}}
+        <div class="chatzz-tab-content" data-tab-content="gmtools">
+            <div class="chatzz-section">
+                <div class="chatzz-gm-buttons">
+                    <button class="chatzz-btn chatzz-btn-gm" data-action="openMonitor">
+                        <i class="fas fa-eye"></i>
+                        <span>Stealth Monitor</span>
+                    </button>
+
+                    <button class="chatzz-btn chatzz-btn-gm" data-action="openGroupManager">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Group Manager</span>
+                    </button>
+
+                    <button class="chatzz-btn chatzz-btn-gm" data-action="openGMTools">
+                        <i class="fas fa-gavel"></i>
+                        <span>Moderation</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chatzz-section">
+                <h3><i class="fas fa-image"></i> Backgrounds</h3>
+                
+                <button class="chatzz-btn" data-action="setGlobalBackground">
+                    <i class="fas fa-globe"></i>
+                    Set Global Background
+                </button>
+
+                <div class="chatzz-user-bg-grid">
+                    {{#each users}}
+                    <div class="chatzz-user-bg-card" data-user-id="{{id}}">
+                        <div class="chatzz-user-avatar">
+                            {{#if avatar}}
+                            <img src="{{avatar}}" alt="{{name}}">
+                            {{else}}
+                            <div class="chatzz-avatar-initials" style="background: {{color}}">{{initials}}</div>
+                            {{/if}}
+                        </div>
+                        <span class="chatzz-user-name">{{name}}</span>
+                        <button class="chatzz-btn-icon" data-action="setUserBackground" data-user-id="{{id}}" title="Set Background">
+                            <i class="fas fa-image"></i>
+                        </button>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+    </div>
+
+    {{!-- Bottom Tab Navigation --}}
+    <div class="chatzz-tabs">
+        <button class="chatzz-tab active" data-tab="conversations" title="Messages">
+            <img class="sao-icon" src="modules/ld-chatzz/icons/Chats.png" data-default="modules/ld-chatzz/icons/Chats.png" data-active="modules/ld-chatzz/icons/Chats_on.png" alt="Messages">
+        </button>
+        <button class="chatzz-tab" data-tab="newchat" title="New Chat">
+            <img class="sao-icon" src="modules/ld-chatzz/icons/Plus.png" data-default="modules/ld-chatzz/icons/Plus.png" data-active="modules/ld-chatzz/icons/Plus_on.png" alt="New Chat">
+        </button>
+        {{#if isGM}}
+        <button class="chatzz-tab" data-tab="gmtools" title="GM Tools">
+            <img class="sao-icon" src="modules/ld-chatzz/icons/Stealth.png" data-default="modules/ld-chatzz/icons/Stealth.png" data-active="modules/ld-chatzz/icons/Stealth_on.png" alt="GM Tools">
+        </button>
+        {{/if}}
+        <button class="chatzz-tab" data-tab="settings" title="Settings">
+            <img class="sao-icon" src="modules/ld-chatzz/icons/Option.png" data-default="modules/ld-chatzz/icons/Option.png" data-active="modules/ld-chatzz/icons/Option_on.png" alt="Settings">
+        </button>
+    </div>
+</div>

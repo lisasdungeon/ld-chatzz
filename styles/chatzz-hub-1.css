@@ -1,0 +1,474 @@
+/* ============================================
+   TYPING INDICATOR
+   ============================================ */
+.chatzz-typing-indicator {
+    display: none;
+    padding: var(--chatzz-spacing-sm);
+    color: var(--chatzz-text-secondary);
+    font-size: 12px;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+}
+
+.chatzz-typing-indicator.visible {
+    display: flex;
+}
+
+.chatzz-typing-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.chatzz-typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--chatzz-neon-cyan);
+    border-radius: 50%;
+    animation: chatzz-typing 1.4s infinite;
+}
+
+.chatzz-typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.chatzz-typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes chatzz-typing {
+    0%, 60%, 100% { 
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    30% { 
+        transform: translateY(-8px);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   INPUT AREA
+   ============================================ */
+.chatzz-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-sm);
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-md);
+    background: var(--chatzz-bg-input);
+    border-top: 1px solid var(--chatzz-border);
+}
+
+/* Reply Preview */
+.chatzz-reply-preview {
+    display: none;
+    background: var(--chatzz-bg-darker);
+    border-left: 2px solid var(--chatzz-neon-purple);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    border-radius: 0 var(--chatzz-radius-sm) var(--chatzz-radius-sm) 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatzz-reply-preview.visible {
+    display: flex;
+}
+
+.chatzz-reply-preview .reply-content {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-reply-preview .reply-content i {
+    color: var(--chatzz-neon-purple);
+}
+
+.chatzz-reply-preview .cancel-reply {
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-muted);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.chatzz-reply-preview .cancel-reply:hover {
+    color: var(--chatzz-neon-red);
+}
+
+/* Speaker Select (GM) */
+.chatzz-speaker-select {
+    display: none;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    padding-bottom: var(--chatzz-spacing-sm);
+    border-bottom: 1px solid var(--chatzz-border);
+}
+
+.chatzz-speaker-select.visible {
+    display: flex;
+}
+
+.chatzz-speaker-select label {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+.chatzz-speaker-select select {
+    flex: 1;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-sm);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-sm);
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+}
+
+.chatzz-speaker-select select:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+}
+
+/* Input Row */
+.chatzz-input-row {
+    display: flex;
+    gap: var(--chatzz-spacing-sm);
+    align-items: flex-end;
+    width: 100%;
+}
+
+.chatzz-input-row textarea {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: 20px;
+    padding: 8px 14px;
+    color: var(--chatzz-text-primary);
+    font-family: inherit;
+    font-size: 14px;
+    resize: none;
+    min-height: 40px;
+    max-height: 80px;
+    line-height: 1.4;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-input-row textarea:focus {
+    outline: none;
+    border-color: var(--chatzz-border-focus);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-input-row textarea::placeholder {
+    color: var(--chatzz-text-muted);
+}
+
+/* Attach Button */
+/* Attach button (legacy - input row paperclip) */
+.chatzz-attach-btn {
+    background: var(--chatzz-btn-dark);
+    border: none;
+    color: var(--chatzz-text-primary);
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px !important;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.chatzz-attach-btn:hover {
+    background: var(--chatzz-bg-active);
+}
+
+/* Input Hint */
+.chatzz-input-hint {
+    font-size: 11px;
+    color: var(--chatzz-text-muted);
+    text-align: center;
+}
+
+/* Replying Bar */
+.chatzz-replying-bar {
+    display: none;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-left: 3px solid var(--chatzz-neon-purple);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatzz-replying-bar.visible {
+    display: flex;
+}
+
+.chatzz-replying-content {
+    display: flex;
+    align-items: center;
+    gap: var(--chatzz-spacing-sm);
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+    flex: 1;
+}
+
+.chatzz-replying-content i {
+    color: var(--chatzz-neon-purple);
+}
+
+.chatzz-replying-content strong {
+    color: var(--chatzz-neon-purple);
+    font-weight: 600;
+}
+
+.chatzz-cancel-reply {
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--chatzz-radius-sm);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-cancel-reply:hover {
+    color: var(--chatzz-neon-red);
+    background: var(--chatzz-bg-hover);
+}
+
+/* Image Preview */
+.chatzz-image-preview {
+    display: none;
+    padding: var(--chatzz-spacing-sm);
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+}
+
+.chatzz-image-preview.visible {
+    display: block;
+}
+
+.chatzz-image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--chatzz-radius-sm);
+}
+
+/* Send Button */
+.chatzz-send-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--chatzz-text-primary);
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px !important;
+    flex-shrink: 0;
+    flex-grow: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.chatzz-send-btn .sao-send-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: none;
+    display: block;
+    border-radius: 50%;
+}
+
+.chatzz-send-btn:hover {
+    background: transparent;
+    transform: scale(1.1);
+}
+
+.chatzz-send-btn:active {
+    background: transparent;
+    transform: scale(0.95);
+}
+
+/* ============================================
+   PLAYER HUB
+   ============================================ */
+.chatzz-hub-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--chatzz-bg-dark);
+    padding: 0;
+}
+
+.chatzz-hub-header {
+    display: none; /* Title is in window header */
+}
+
+.chatzz-hub-title {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--chatzz-text-primary);
+    text-shadow: none;
+}
+
+/* ===== BOTTOM TAB NAVIGATION ===== */
+.chatzz-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 24px;
+    background: var(--chatzz-bg-input);
+    border-top: 1px solid var(--chatzz-border);
+    gap: 0;
+}
+
+.chatzz-tab {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--chatzz-text-primary);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    gap: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.chatzz-tab span {
+    display: none;
+}
+
+.chatzz-tab i {
+    font-size: 18px;
+}
+
+.chatzz-tab img.sao-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transition: var(--chatzz-transition);
+    display: block;
+    border-radius: 50%;
+}
+
+.chatzz-tab:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.1);
+}
+
+.chatzz-tab:hover img.sao-icon {
+    opacity: 1;
+}
+
+.chatzz-tab:active {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(0.95);
+}
+
+.chatzz-tab:active img.sao-icon {
+    filter: none;
+    opacity: 1;
+}
+
+.chatzz-tab.active {
+    background: transparent;
+    box-shadow: none;
+}
+
+.chatzz-tab.active img.sao-icon {
+    filter: none;
+    opacity: 1;
+}
+
+
+/* ===== TAB CONTENT PANELS ===== */
+.chatzz-tab-panels {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-tab-content {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: var(--chatzz-spacing-md);
+}
+
+.chatzz-tab-content.active {
+    display: flex;
+}
+
+/* ===== SEARCH WRAPPER ===== */
+.chatzz-search-wrapper {
+    position: relative;
+    margin-bottom: var(--chatzz-spacing-sm);
+}
+
+.chatzz-search-wrapper i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--chatzz-text-secondary);
+    font-size: 12px;
+}
+
+.chatzz-hub-search {
+    width: 100%;
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-sm) var(--chatzz-spacing-sm) 36px;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    color: var(--chatzz-text-primary);
+    font-size: 13px;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-hub-search:focus {
+    outline: none;
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-hub-search::placeholder {
+    color: var(--chatzz-text-secondary);
+}
+
+/* ===== CONVERSATION LIST ===== */

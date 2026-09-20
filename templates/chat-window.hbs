@@ -1,0 +1,160 @@
+<div class="chatzz-chat-container">
+    <!-- Header Toolbar -->
+    <div class="chatzz-toolbar">
+        <div class="chatzz-toolbar-left">
+            <input type="text" class="chatzz-search-input" placeholder="{{localize 'CHATZZ.SearchMessages'}}">
+            {{#if searchActive}}
+            <span class="chatzz-search-count">{{searchResultCount}} {{localize 'CHATZZ.Results'}}</span>
+            {{/if}}
+        </div>
+        <div class="chatzz-toolbar-right">
+            <button type="button" class="chatzz-toolbar-btn chatzz-image-btn" title="{{localize 'CHATZZ.ShareImage'}}">
+                <img class="btn-icon" src="modules/ld-chatzz/icons/AddImage.png" data-default="modules/ld-chatzz/icons/AddImage.png" data-active="modules/ld-chatzz/icons/AddImage_on.png" alt="Share Image">
+            </button>
+            <button type="button" class="chatzz-toolbar-btn chatzz-favorite-btn" title="{{#if isFavorite}}{{localize 'CHATZZ.RemoveFavorite'}}{{else}}{{localize 'CHATZZ.AddFavorite'}}{{/if}}">
+                <img class="btn-icon" src="modules/ld-chatzz/icons/Favorite.png" data-default="modules/ld-chatzz/icons/Favorite.png" data-active="modules/ld-chatzz/icons/Favorite_on.png" alt="Favorite">
+            </button>
+            <button type="button" class="chatzz-toolbar-btn chatzz-mute-btn" title="{{#if isMuted}}{{localize 'CHATZZ.Unmute'}}{{else}}{{localize 'CHATZZ.Mute'}}{{/if}}">
+                <img class="btn-icon" src="modules/ld-chatzz/icons/Notification.png" data-default="modules/ld-chatzz/icons/Notification.png" data-active="modules/ld-chatzz/icons/Notification_on.png" alt="Notifications">
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden image input -->
+    <input type="file" class="chatzz-image-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none;">
+
+    <!-- Online Status (for private chats) -->
+    {{#unless isGroup}}
+    {{#if otherUser}}
+    <div class="chatzz-status-bar">
+        <span class="chatzz-status-dot {{#if isOnline}}online{{else}}offline{{/if}}"></span>
+        <span class="chatzz-status-text">
+            {{otherUser.name}} - {{#if isOnline}}{{localize 'CHATZZ.Online'}}{{else}}{{localize 'CHATZZ.Offline'}}{{/if}}
+        </span>
+    </div>
+    {{else if otherActor}}
+    <div class="chatzz-status-bar">
+        <span class="chatzz-status-dot {{#if isOnline}}online{{else}}offline{{/if}}"></span>
+        <span class="chatzz-status-text">
+            {{otherActor.name}} - {{#if isOnline}}{{localize 'CHATZZ.Online'}}{{else}}{{localize 'CHATZZ.Offline'}}{{/if}}
+        </span>
+    </div>
+    {{/if}}
+    {{/unless}}
+
+    <!-- Group Info (for group chats) -->
+    {{#if isGroup}}
+    {{#if group}}
+    <div class="chatzz-status-bar">
+        <i class="fas fa-satellite-dish"></i>
+        <span class="chatzz-channel-name">{{group.name}}</span>
+        <span class="chatzz-member-count">{{memberCount}} {{localize 'CHATZZ.Members'}}</span>
+    </div>
+    {{/if}}
+    {{/if}}
+
+    <!-- Message List -->
+    <div class="chatzz-message-list">
+        {{#each messages}}
+        <div class="chatzz-message {{#if this.isOwn}}sent{{else}}received{{/if}} {{#if this.isPinned}}pinned{{/if}}" data-message-id="{{this.id}}">
+            <!-- Avatar -->
+            <div class="chatzz-msg-avatar" style="border-color: {{this.userColor}}">
+                {{#if this.useInitials}}
+                <div class="chatzz-avatar-initials" style="background: {{this.userColor}}">{{this.avatarInitials}}</div>
+                {{else}}
+                <img src="{{this.senderImg}}" alt="{{this.senderName}}">
+                {{/if}}
+            </div>
+
+            <!-- Message Content -->
+            <div class="chatzz-msg-body">
+                <div class="chatzz-msg-header">
+                    <span class="chatzz-msg-sender" style="color: {{this.userColor}}">{{this.senderName}}</span>
+                    <span class="chatzz-msg-time" title="{{this.fullTime}}">{{this.relativeTime}}</span>
+                    {{#if this.isPinned}}
+                    <i class="fas fa-thumbtack chatzz-pin-icon" title="{{localize 'CHATZZ.Pinned'}}"></i>
+                    {{/if}}
+                    {{#if this.edited}}
+                    <span class="chatzz-edited" title="{{localize 'CHATZZ.EditedAt'}} {{this.editedTime}}">({{localize 'CHATZZ.Edited'}})</span>
+                    {{/if}}
+                </div>
+
+                {{#if this.replyTo}}
+                <div class="chatzz-reply-preview">
+                    <i class="fas fa-reply"></i>
+                    <span class="chatzz-reply-sender">{{this.replyTo.senderName}}</span>:
+                    <span class="chatzz-reply-content">{{this.replyTo.preview}}</span>
+                </div>
+                {{/if}}
+
+                <div class="chatzz-msg-content">{{{this.displayContent}}}</div>
+
+                {{#if this.imageUrl}}
+                <div class="chatzz-msg-image">
+                    <img src="{{this.imageUrl}}" alt="{{localize 'CHATZZ.SharedImage'}}" loading="lazy" class="chatzz-shared-image">
+                </div>
+                {{/if}}
+
+                {{#if this.formattedReactions}}
+                <div class="chatzz-reactions">
+                    {{#each this.formattedReactions}}
+                    <div class="chatzz-reaction {{#if this.isOwnReaction}}own{{/if}}" data-emoji="{{this.emoji}}" title="{{this.users}}">
+                        <span class="chatzz-reaction-emoji">{{this.emoji}}</span>
+                        <span class="chatzz-reaction-count">{{this.count}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/if}}
+
+                <!-- Message Actions removed for simplified interface -->
+                <div class="chatzz-msg-actions" style="display:none;"></div>
+            </div>
+        </div>
+        {{/each}}
+
+        {{#if typingText}}
+        <div class="chatzz-typing-indicator">
+            <i class="fas fa-ellipsis-h"></i> {{typingText}}
+        </div>
+        {{/if}}
+    </div>
+
+    <!-- Reply Preview -->
+    {{#if replyingTo}}
+    <div class="chatzz-replying-bar">
+        <div class="chatzz-replying-content">
+            <i class="fas fa-reply"></i>
+            <span>{{localize 'CHATZZ.ReplyingTo'}} <strong>{{replyingTo.senderName}}</strong>: {{replyingTo.preview}}</span>
+        </div>
+        <button type="button" class="chatzz-cancel-reply" title="{{localize 'CHATZZ.CancelReply'}}">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    {{/if}}
+
+    <!-- Image Preview Area (for pending uploads) -->
+    <div class="chatzz-image-preview" style="display:none;"></div>
+
+    <!-- Input Area -->
+    <div class="chatzz-input-area">
+        {{#if isGM}}
+        <div class="chatzz-speaker-select">
+            <label>{{localize 'CHATZZ.SpeakAs'}}</label>
+            <select name="speaker">
+                {{#each speakers}}
+                <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{/if}}
+        <div class="chatzz-input-row">
+            <textarea name="message" rows="2" placeholder="{{localize 'CHATZZ.TypeMessage'}}"></textarea>
+            <button type="submit" class="chatzz-send-btn" title="{{localize 'CHATZZ.Send'}}">
+                <img class="sao-send-icon" src="modules/ld-chatzz/icons/Yes.png" data-default="modules/ld-chatzz/icons/Yes.png" data-active="modules/ld-chatzz/icons/Yes_on.png" alt="Send">
+            </button>
+        </div>
+        <div class="chatzz-input-hint">
+            {{localize 'CHATZZ.InputHint'}}
+        </div>
+    </div>
+</div>

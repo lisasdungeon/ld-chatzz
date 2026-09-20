@@ -1,0 +1,50 @@
+{
+  "id": "ld-chatzz",
+  "title": "LD Chatzz",
+  "description": "Next-generation encrypted communications module for Foundry VTT. Features private messaging, group channels, image sharing, GM stealth monitoring, and a sleek cyberpunk interface. System agnostic.",
+  "version": "1.5.0",
+  "authors": [
+    {
+      "name": "Lisa's Dungeon",
+      "url": "https://github.com/lisasdungeon",
+      "discord": "MystryssLysa",
+      "email": "Lisasdungeon@gmail.com",
+      "patreon": "https://patreon.com/LisasDungeon"
+    }
+  ],
+  "compatibility": {
+    "minimum": 11,
+    "verified": 13
+  },
+  "url": "https://github.com/lisasdungeon/ld-chatzz",
+  "manifest": "https://github.com/lisasdungeon/ld-chatzz/releases/latest/download/module.json",
+  "download": "https://github.com/lisasdungeon/ld-chatzz/releases/download/v1.5.0/ld-chatzz-v1.5.0.zip",
+  "readme": "https://github.com/lisasdungeon/ld-chatzz/blob/main/README.md",
+  "license": "https://github.com/lisasdungeon/ld-chatzz/blob/main/LICENSE",
+  "changelog": "https://github.com/lisasdungeon/ld-chatzz/blob/main/CHANGELOG.md",
+  "bugs": "https://github.com/lisasdungeon/ld-chatzz/issues",
+  "esmodules": [
+    "main.js"
+  ],
+  "styles": [
+    "styles/chatzz-base.css",
+    "styles/chatzz-themes.css",
+    "styles/chatzz-messages.css",
+    "styles/chatzz-hub-1.css",
+    "styles/chatzz-hub-2.css",
+    "styles/chatzz-hub-3.css",
+    "styles/chatzz-group-monitor.css",
+    "styles/chatzz-settings-ui.css",
+    "styles/chatzz-overrides.css",
+    "styles/chatzz-panels.css",
+    "styles/chatzz-mobile.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": true
+}

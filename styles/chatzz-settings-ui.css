@@ -1,0 +1,480 @@
+/* ============================================
+   SETTINGS WINDOW
+   ============================================ */
+.chatzz-settings {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-lg);
+}
+
+.chatzz-settings-section {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-settings-section h3 {
+    font-family: 'SAOUI', 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--chatzz-neon-orange);
+    margin-bottom: var(--chatzz-spacing-md);
+    padding-bottom: var(--chatzz-spacing-sm);
+    border-bottom: 1px solid var(--chatzz-border);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chatzz-setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--chatzz-spacing-sm) 0;
+}
+
+.chatzz-setting-row:not(:last-child) {
+    border-bottom: 1px solid var(--chatzz-border);
+}
+
+.chatzz-setting-label {
+    color: var(--chatzz-text-primary);
+}
+
+.chatzz-setting-description {
+    font-size: 12px;
+    color: var(--chatzz-text-muted);
+    margin-top: 2px;
+}
+
+/* Toggle Switch */
+.chatzz-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.chatzz-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.chatzz-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--chatzz-bg-darker);
+    border: 1px solid var(--chatzz-border);
+    border-radius: 12px;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-toggle-slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--chatzz-text-secondary);
+    border-radius: 50%;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-toggle input:checked + .chatzz-toggle-slider {
+    background: rgba(var(--chatzz-accent-rgb),0.20);
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-toggle input:checked + .chatzz-toggle-slider::before {
+    background: var(--chatzz-neon-cyan);
+    transform: translateX(20px);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+/* Theme Grid */
+.chatzz-theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--chatzz-spacing-sm);
+    margin-top: var(--chatzz-spacing-sm);
+}
+
+.chatzz-theme-option {
+    background: var(--chatzz-bg-darker);
+    border: 2px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-theme-option:hover {
+    border-color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-theme-option.selected {
+    border-color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-theme-preview {
+    height: 40px;
+    border-radius: var(--chatzz-radius-sm);
+    margin-bottom: var(--chatzz-spacing-xs);
+}
+
+.chatzz-theme-name {
+    font-size: 12px;
+    color: var(--chatzz-text-secondary);
+}
+
+/* ============================================
+   GM MODERATION
+   ============================================ */
+.chatzz-gm-mod {
+    display: flex;
+    flex-direction: column;
+    gap: var(--chatzz-spacing-lg);
+}
+
+.chatzz-mod-section {
+    background: var(--chatzz-bg-input);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-md);
+}
+
+.chatzz-mod-section h3 {
+    font-size: 14px;
+    color: var(--chatzz-neon-cyan);
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-danger-zone {
+    border-color: var(--chatzz-neon-red);
+}
+
+.chatzz-danger-zone h3 {
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-mod-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--chatzz-spacing-sm) 0;
+    border-bottom: 1px solid var(--chatzz-border);
+}
+
+.chatzz-mod-action:last-child {
+    border-bottom: none;
+}
+
+.chatzz-mod-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-primary);
+    padding: var(--chatzz-spacing-xs) var(--chatzz-spacing-md);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    font-family: inherit;
+}
+
+.chatzz-mod-btn:hover {
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+}
+
+.chatzz-mod-btn.danger {
+    border-color: var(--chatzz-neon-red);
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-mod-btn.danger:hover {
+    background: rgba(var(--chatzz-accent-rgb), 0.15);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.chatzz-btn {
+    background: transparent;
+    border: 1px solid var(--chatzz-border);
+    color: var(--chatzz-text-primary);
+    padding: var(--chatzz-spacing-sm) var(--chatzz-spacing-lg);
+    border-radius: var(--chatzz-radius-sm);
+    cursor: pointer;
+    transition: var(--chatzz-transition);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.chatzz-btn:hover {
+    border-color: var(--chatzz-neon-cyan);
+    color: var(--chatzz-neon-cyan);
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-btn-primary {
+    background: linear-gradient(135deg, 
+        var(--chatzz-neon-cyan) 0%, 
+        var(--chatzz-neon-blue) 100%);
+    border: none;
+    color: var(--chatzz-bg-dark);
+    font-weight: 600;
+}
+
+.chatzz-btn-primary:hover {
+    transform: scale(1.02);
+    color: var(--chatzz-bg-dark);
+}
+
+.chatzz-btn-danger {
+    border-color: var(--chatzz-neon-red);
+    color: var(--chatzz-neon-red);
+}
+
+.chatzz-btn-danger:hover {
+    background: rgba(var(--chatzz-accent-rgb), 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   HOTBAR BUTTON
+   ============================================ */
+.chatzz-hotbar-btn {
+    position: relative;
+}
+
+.chatzz-hotbar-btn .unread-indicator {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    background: var(--chatzz-neon-cyan);
+    color: var(--chatzz-bg-dark);
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--chatzz-glow-cyan);
+    animation: chatzz-pulse 2s infinite;
+}
+
+@keyframes chatzz-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ============================================
+   EMPTY STATES
+   ============================================ */
+.chatzz-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--chatzz-spacing-xl);
+    text-align: center;
+    color: var(--chatzz-text-muted);
+}
+
+.chatzz-empty-state i {
+    font-size: 48px;
+    margin-bottom: var(--chatzz-spacing-md);
+    color: var(--chatzz-border);
+}
+
+.chatzz-empty-state h3 {
+    color: var(--chatzz-text-secondary);
+    margin-bottom: var(--chatzz-spacing-sm);
+}
+
+.chatzz-empty-state p {
+    font-size: 14px;
+}
+
+/* ============================================
+   DIALOGS & MODALS
+   ============================================ */
+.chatzz-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.chatzz-dialog {
+    background: var(--chatzz-bg-panel);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-lg);
+    padding: var(--chatzz-spacing-lg);
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--chatzz-glow-cyan);
+}
+
+.chatzz-dialog h3 {
+    color: var(--chatzz-neon-cyan);
+    margin-bottom: var(--chatzz-spacing-md);
+}
+
+.chatzz-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--chatzz-spacing-sm);
+    margin-top: var(--chatzz-spacing-lg);
+}
+
+/* ============================================
+   EMOJI PICKER
+   ============================================ */
+.chatzz-emoji-picker {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: var(--chatzz-bg-panel);
+    border: 1px solid var(--chatzz-border);
+    border-radius: var(--chatzz-radius-md);
+    padding: var(--chatzz-spacing-sm);
+    display: none;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.chatzz-emoji-picker.visible {
+    display: block;
+}
+
+.chatzz-emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+}
+
+.chatzz-emoji-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: var(--chatzz-radius-sm);
+    transition: var(--chatzz-transition);
+}
+
+.chatzz-emoji-btn:hover {
+    background: var(--chatzz-bg-hover);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 600px) {
+    .chatzz-chat-header {
+        flex-wrap: wrap;
+    }
+    
+    .chatzz-header-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: var(--chatzz-spacing-sm);
+    }
+    
+    .chatzz-theme-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.chatzz-fade-in {
+    animation: chatzz-fade-in 0.3s ease;
+}
+
+@keyframes chatzz-fade-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+.chatzz-slide-in {
+    animation: chatzz-slide-in 0.3s ease;
+}
+
+@keyframes chatzz-slide-in {
+    from { 
+        opacity: 0; 
+        transform: translateX(-20px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0);
+    }
+}
+
+/* Glitch Effect for Special Elements */
+.chatzz-glitch {
+    position: relative;
+}
+
+.chatzz-glitch::before,
+.chatzz-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.chatzz-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--chatzz-neon-magenta);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: chatzz-glitch-1 3s infinite linear alternate-reverse;
+}
+
+.chatzz-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--chatzz-neon-cyan);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: chatzz-glitch-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes chatzz-glitch-1 {
+    0% { clip: rect(36px, 9999px, 9px, 0); }
+    25% { clip: rect(25px, 9999px, 99px, 0); }
+    50% { clip: rect(50px, 9999px, 102px, 0); }
+    75% { clip: rect(30px, 9999px, 92px, 0); }
+    100% { clip: rect(91px, 9999px, 98px, 0); }
+}
+
+@keyframes chatzz-glitch-2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    25% { clip: rect(75px, 9999px, 53px, 0); }
+    50% { clip: rect(22px, 9999px, 15px, 0); }
+    75% { clip: rect(45px, 9999px, 75px, 0); }
+    100% { clip: rect(16px, 9999px, 28px, 0); }
+}
+

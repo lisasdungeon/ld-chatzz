@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Primary chat bubble -->
+  <path d="M5 9 Q5 6 8 6 L22 6 Q25 6 25 9 L25 19 Q25 22 22 22 L13 22 L8 27 L8 22 L8 22 Q5 22 5 19 Z"
+        fill="none" stroke="#6b2a2a" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Secondary chat bubble (behind/right) -->
+  <path d="M27 12 Q30 12 30 15 L30 22 Q30 25 27 25 L25 25 L25 22"
+        fill="none" stroke="#6b2a2a" stroke-width="1.3" stroke-linejoin="round" opacity="0.65"/>
+</svg>

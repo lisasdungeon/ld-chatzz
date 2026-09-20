@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--
+  LD Chatzz — Mobile Overflow Audit
+
+  Renders representative chat/hub/GM-monitor windows against the module's real
+  CSS and reports any element that overflows the viewport horizontally.
+
+  Usage:
+    - Manual: open this file in a browser and set a phone-width viewport
+      (devtools responsive mode); the report appears as a fixed overlay.
+    - Headless: `npm run audit:mobile [widths...]` (defaults 320 375 390 768).
+      Requires Firefox. The report is also written to stdout via dump().
+
+  Extend by adding more representative markup to buildWindows() below.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LD Chatzz — Mobile Overflow Audit</title>
+  <style>
+    /* Minimal Foundry shell + border-box reset (Foundry uses border-box globally). */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { width: 100%; background: #111; }
+    #ui { position: relative; width: 100%; height: 100vh; }
+    .window-app { position: absolute; }
+    .window-header { display: flex; }
+    .window-content { position: relative; overflow: hidden; }
+    #audit-report {
+      position: fixed; top: 0; left: 0; right: 0; max-height: 100%;
+      margin: 0; overflow: auto; z-index: 99999;
+      background: #000; color: #0f0; font: 12px/1.4 monospace;
+      white-space: pre-wrap; word-break: break-all; padding: 8px;
+    }
+  </style>
+  <link rel="stylesheet" href="../styles/chatzz-base.css">
+  <link rel="stylesheet" href="../styles/chatzz-messages.css">
+  <link rel="stylesheet" href="../styles/chatzz-hub-1.css">
+  <link rel="stylesheet" href="../styles/chatzz-hub-2.css">
+  <link rel="stylesheet" href="../styles/chatzz-hub-3.css">
+  <link rel="stylesheet" href="../styles/chatzz-group-monitor.css">
+  <link rel="stylesheet" href="../styles/chatzz-settings-ui.css">
+  <link rel="stylesheet" href="../styles/chatzz-overrides.css">
+  <link rel="stylesheet" href="../styles/chatzz-panels.css">
+  <link rel="stylesheet" href="../styles/chatzz-mobile.css">
+</head>
+<body>
+  <div id="ui"></div>
+
+  <script>
+    function buildChatWindow() {
+      const win = document.createElement("aside");
+      win.className = "window-app ld-chatzz chatzz-chat-window";
+      win.innerHTML = `
+        <header class="window-header"><button class="header-control close"></button><span class="window-title">Private Chat</span></header>
+        <div class="window-content">
+          <div class="chatzz-chat-container">
+            <div class="chatzz-toolbar">
+              <div class="chatzz-toolbar-left">
+                <input type="text" class="chatzz-search-input" placeholder="Search messages">
+              </div>
+              <div class="chatzz-toolbar-right">
+                <button class="chatzz-toolbar-btn chatzz-image-btn"><img class="btn-icon" src=""></button>
+                <button class="chatzz-toolbar-btn chatzz-favorite-btn"><img class="btn-icon" src=""></button>
+                <button class="chatzz-toolbar-btn chatzz-mute-btn"><img class="btn-icon" src=""></button>
+              </div>
+            </div>
+            <div class="chatzz-status-bar">
+              <span class="chatzz-status-dot online"></span>
+              <span class="chatzz-status-text">A Very Long Player Display Name - Online</span>
+            </div>
+            <div class="chatzz-message-list">
+              <div class="chatzz-message received">
+                <div class="chatzz-msg-avatar"><img src=""></div>
+                <div class="chatzz-msg-body">
+                  <div class="chatzz-msg-header"><span class="chatzz-msg-sender">Alice</span><span class="chatzz-msg-time">now</span></div>
+                  <div class="chatzz-msg-content">Check this link: https://example.com/some/very/long/path/that/does/not/break/words/at/all/abcdefghijklmnopqrstuvwxyz</div>
+                </div>
+              </div>
+              <div class="chatzz-message sent">
+                <div class="chatzz-msg-avatar"><img src=""></div>
+                <div class="chatzz-msg-body">
+                  <div class="chatzz-msg-header"><span class="chatzz-msg-sender">Me</span><span class="chatzz-msg-time">now</span></div>
+                  <div class="chatzz-msg-image"><img class="chatzz-shared-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" style="width:800px;"></div>
+                </div>
+              </div>
+              <div class="chatzz-message received">
+                <div class="chatzz-msg-avatar"><img src=""></div>
+                <div class="chatzz-msg-body">
+                  <div class="chatzz-msg-header"><span class="chatzz-msg-sender">Bob</span><span class="chatzz-msg-time">now</span></div>
+                  <div class="chatzz-msg-content">Short message.</div>
+                </div>
+              </div>
+            </div>
+            <div class="chatzz-replying-bar">
+              <div class="chatzz-replying-content"><i class="fas fa-reply"></i><span>Replying to <strong>Alice</strong>: some very long quoted message text that should truncate gracefully on narrow phones</span></div>
+              <button class="chatzz-cancel-reply"></button>
+            </div>
+            <div class="chatzz-input-area">
+              <div class="chatzz-input-row">
+                <textarea name="message" rows="2" placeholder="Type a message"></textarea>
+                <button class="chatzz-send-btn"><img class="sao-send-icon" src=""></button>
+              </div>
+              <div class="chatzz-input-hint">Press Enter to send</div>
+            </div>
+          </div>
+        </div>`;
+      return win;
+    }
+
+    function buildHubWindow() {
+      const win = document.createElement("aside");
+      win.className = "window-app ld-chatzz chatzz-hub chatzz-window";
+      let items = "";
+      for (let i = 0; i < 6; i++) {
+        items += `
+          <div class="chatzz-conv-item has-unread">
+            <div class="chatzz-conv-avatar"><div class="chatzz-avatar-initials" style="background:#666">AL</div></div>
+            <div class="chatzz-conv-info">
+              <div class="chatzz-conv-name"><i class="fas fa-star chatzz-fav-icon"></i>A Conversation With A Very Long Display Name That Could Overflow</div>
+              <div class="chatzz-conv-preview">A preview of the most recent message in this conversation</div>
+            </div>
+            <div class="chatzz-conv-meta"><span class="chatzz-conv-time">12:30</span><span class="chatzz-unread-count">3</span></div>
+          </div>`;
+      }
+      let cards = "";
+      for (let i = 0; i < 5; i++) {
+        cards += `
+          <div class="chatzz-user-card">
+            <div class="chatzz-user-avatar"><div class="chatzz-avatar-initials" style="background:#555">PC</div></div>
+            <div class="chatzz-user-name">Player Character With A Long Name</div>
+            <div class="chatzz-user-status online">Online</div>
+          </div>`;
+      }
+      win.innerHTML = `
+        <header class="window-header"><button class="header-control close"></button><span class="window-title">LD Chatzz</span></header>
+        <div class="window-content">
+          <div class="chatzz-hub-container">
+            <div class="chatzz-tab-panels">
+              <div class="chatzz-tab-content active" data-tab-content="conversations">
+                <div class="chatzz-search-wrapper"><i class="fas fa-search"></i><input type="text" class="chatzz-hub-search" placeholder="Search..."></div>
+                <div class="chatzz-conversation-list">${items}</div>
+              </div>
+              <div class="chatzz-tab-content" data-tab-content="newchat">
+                <div class="chatzz-two-column">
+                  <div class="chatzz-column"><div class="chatzz-column-header"><span>Players</span></div><div class="chatzz-user-list">${cards}</div></div>
+                  <div class="chatzz-column"><div class="chatzz-column-header"><span>Characters</span></div><div class="chatzz-user-list">${cards}</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="chatzz-tabs">
+              <button class="chatzz-tab active"><img class="sao-icon" src=""></button>
+              <button class="chatzz-tab"><img class="sao-icon" src=""></button>
+              <button class="chatzz-tab"><img class="sao-icon" src=""></button>
+              <button class="chatzz-tab"><img class="sao-icon" src=""></button>
+            </div>
+          </div>
+        </div>`;
+      return win;
+    }
+
+    function buildMonitorWindow() {
+      const win = document.createElement("aside");
+      win.className = "window-app ld-chatzz chatzz-gm-monitor chatzz-window";
+      let users = "";
+      for (let i = 0; i < 8; i++) {
+        users += `<label class="chatzz-user-filter-item"><input type="checkbox"><img class="chatzz-user-avatar-small" src=""><span>Player ${i + 1}</span></label>`;
+      }
+      win.innerHTML = `
+        <header class="window-header"><button class="header-control close"></button><span class="window-title">Stealth Monitor</span></header>
+        <div class="window-content">
+          <div class="chatzz-monitor-container">
+            <div class="chatzz-monitor-controls">
+              <input type="text" class="chatzz-monitor-search" placeholder="Search...">
+              <button class="chatzz-filter-btn">All</button>
+              <button class="chatzz-toggle-btn">Auto</button>
+            </div>
+            <div class="chatzz-monitor-body">
+              <div class="chatzz-user-sidebar"><h4>Filter by User</h4><div class="chatzz-user-list">${users}</div></div>
+              <div class="chatzz-monitor-messages">
+                <div class="chatzz-monitor-message"><div class="chatzz-monitor-msg-header"><span class="chatzz-monitor-sender">Alice</span><span class="chatzz-monitor-channel">Channel Name</span></div><div class="chatzz-monitor-msg-content">https://example.com/another/long/unbroken/url/that/should/wrap/gracefully/on/phones</div></div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      return win;
+    }
+
+    function describe(el) {
+      const parts = [];
+      let cur = el;
+      let guard = 0;
+      while (cur && cur !== document.body && guard < 3) {
+        let s = cur.tagName ? cur.tagName.toLowerCase() : "";
+        if (cur.id) s += "#" + cur.id;
+        if (typeof cur.className === "string" && cur.className.trim()) {
+          s += "." + cur.className.trim().split(/\s+/).filter(Boolean).join(".");
+        }
+        parts.unshift(s);
+        cur = cur.parentElement;
+        guard++;
+      }
+      return parts.join(" > ");
+    }
+
+    function measure() {
+      const vw = document.documentElement.clientWidth;
+      const lines = [];
+      lines.push("viewport=" + vw + " clientW=" + vw + " scrollW=" + document.documentElement.scrollWidth);
+      const seen = new Set();
+      const nodes = document.querySelectorAll("#ui, #ui *");
+      let count = 0;
+      for (const el of nodes) {
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 && r.height === 0) continue;
+        if (r.right > vw + 0.5 || r.left < -0.5) {
+          const d = describe(el);
+          const key = d + "|" + Math.round(r.left) + "|" + Math.round(r.right);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          count++;
+          lines.push("OVERFLOW " + d + " left=" + Math.round(r.left) + " right=" + Math.round(r.right) + " w=" + Math.round(r.width));
+        }
+      }
+      lines.push(count === 0 ? "RESULT=PASS" : "RESULT=FAIL count=" + count);
+      return lines;
+    }
+
+    const ui = document.getElementById("ui");
+    ui.appendChild(buildChatWindow());
+    ui.appendChild(buildHubWindow());
+    ui.appendChild(buildMonitorWindow());
+
+    const report = measure();
+
+    // Visible report (appended after measurement so it cannot skew results).
+    const pre = document.createElement("pre");
+    pre.id = "audit-report";
+    pre.textContent = report.join("\n");
+    document.body.appendChild(pre);
+
+    // Headless output for the runner (Firefox-only dump(); guarded so the page
+    // still works in Chrome/jsdom, where dump is undefined).
+    if (typeof dump === "function") {
+        dump(report.map((l) => "AUDIT " + l).join("\n") + "\n");
+    }
+  </script>
+</body>
+</html>
